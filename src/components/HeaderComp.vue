@@ -10,31 +10,31 @@
     <h1>Konrad Żyra</h1>
     <div class="HeaderInfoContent">
       <div class="InfoTile">
-        <label>zyrakonrad09@gmail.com</label>
+        <p>zyrakonrad09@gmail.com</p>
         <div class="SingleIcon">
-          <i class="fas fa-envelope" :style="{ fontSize: '18px', color: 'fff' }"/>
+          <font-awesome-icon :icon="['fas', 'envelope']" size="lg" />
         </div>
       </div>
       <div class="InfoTile">
-        <label>604 102 666</label>
+        <p>604 102 666</p>
         <div class="SingleIcon">
-          <i class="fas fa-phone" :style="{ fontSize: '18px', color: 'fff' }"/>
+          <font-awesome-icon :icon="['fas', 'phone']" size="lg" />
         </div>
       </div>
       <div class="InfoTile">
-        <a href="https://pl.linkedin.com/in/konrad-żyra-a8131226a" class="Link">
-          <div>Konrad Żyra</div>
+        <a href="https://pl.linkedin.com/in/konrad-żyra-a8131226a" target="_blank" class="Link">
+          <p>Konrad Żyra</p>
         </a>
         <div class="SingleIcon">
-          <i class="fab fa-linkedin-in" :style="{ fontSize: '18px', color: 'fff' }"/>
+          <font-awesome-icon :icon="['fab', 'linkedin-in']" size="lg"/>
         </div>
       </div>
       <div class="InfoTile">
-        <a href="https://github.com/Zyrekk" class="Link">
-          <div>GitHub</div>
+        <a href="https://github.com/Zyrekk" target="_blank" class="Link">
+          <p>GitHub</p>
         </a>
         <div class="SingleIcon">
-          <i class="fab fa-github" :style="{ fontSize: '22px', color: 'fff' }"/>
+          <font-awesome-icon :icon="['fab', 'github']" size="xl"/>
         </div>
 
       </div>
@@ -44,10 +44,18 @@
 </template>
 
 <script>
-import '@fortawesome/fontawesome-free/css/all.css'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+import {faGithub,faLinkedinIn,} from '@fortawesome/free-brands-svg-icons'
+import {faPhone,faEnvelope} from '@fortawesome/free-solid-svg-icons'
+
+library.add(faGithub,faLinkedinIn,faPhone,faEnvelope)
 
 export default {
-  name: "HeaderComp"
+  name: "HeaderComp",
+  components: {
+    FontAwesomeIcon
+  },
 }
 </script>
 
@@ -186,6 +194,10 @@ a {
   padding: 5px 10px 2px;
   margin: 60px 0 0;
   z-index: 10;
+}
+
+p {
+  margin: 0;
 }
 
 @media screen and (max-width: 860px) {

@@ -15,7 +15,15 @@
       <section class="Project">
         <img :src="spotifyLogin" alt="spotify login view image"/>
         <h4>Spotify - Login & register view</h4>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, qui.</div>
+        <div>Simple spotify login and register form with data validation</div>
+        <div class="ProjectButtons">
+          <a href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
+            <p>GitHub</p>
+          </a>
+          <a href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
+            <p>Live demo</p>
+          </a>
+        </div>
       </section>
     </div>
   </div>
@@ -29,9 +37,9 @@ export default {
     return {
       netflix: require('./../assets/netflix.png'),
       spotify: require('./../assets/spotify.png'),
-      spotifyLogin: require('./../assets/spotifyLogin.png')
+      spotifyLogin: require('./../assets/mySpotify.png')
     }
-  }
+  },
 }
 </script>
 
@@ -74,8 +82,29 @@ export default {
   border-radius: 10px;
   width: 100%;
   margin: 0 auto;
-
 }
 
+.ProjectButtons{
+  display: flex;
+  gap:1rem;
+}
 
+.ProjectButtons a{
+  all: unset;
+  cursor: pointer;
+  position: relative;
+}
+
+.Link p{
+  margin: 1.33em 0 0 0;
+}
+
+.ProjectButtons a::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  bottom: 0;
+  border-bottom: 2px solid white;
+  transition: .2s;
+}
 </style>

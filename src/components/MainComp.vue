@@ -57,33 +57,33 @@
         <div class="CompetenciesContent">
           <div class="CompetenciesTile">
             <span>HTML</span>
-            <i class="fab fa-html5" :style="{ fontSize: '3em', color: 'fff' }"/>
+            <font-awesome-icon :icon="['fab', 'html5']" size="3x" />
               <span>11 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>CSS</span>
-            <i class="fab fa-css3-alt" :style="{ fontSize: '3em', color: 'fff' }"/>
+            <font-awesome-icon :icon="['fab', 'css3-alt']" size="3x" />
               <span>10 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>JAVASCRIPT</span>
-            <i class="fab fa-js-square" :style="{ fontSize: '3em', color: 'fff' }"/>
+            <font-awesome-icon :icon="['fab', 'square-js']" size="3x" />
               <span>8 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>REACT.JS</span>
-            <i class="fab fa-react" :style="{ fontSize: '3em', color: 'fff' }"/>
+            <font-awesome-icon :icon="['fab', 'react']" size="3x" />
               <span>5 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>VUE.JS</span>
-            <i class="fab fa-vuejs" :style="{ fontSize: '3em', color: 'fff' }"/>
+            <font-awesome-icon :icon="['fab', 'vuejs']" size="3x" />
               <span>1 month</span>
           </div>
 
           <div class="CompetenciesTile">
             <span>JAVA</span>
-            <i class="fab fa-java" :style="{ fontSize: '3em', color: 'fff' }"/>
+            <font-awesome-icon :icon="['fab', 'java']" size="3x" />
               <span>15 months</span>
           </div>
         </div>
@@ -94,9 +94,15 @@
 </template>
 
 <script>
-import '@fortawesome/fontawesome-free/css/all.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faJava,faVuejs,faReact,faSquareJs,faCss3Alt,faHtml5} from '@fortawesome/free-brands-svg-icons'
+library.add(faJava,faVuejs,faReact,faSquareJs,faCss3Alt,faHtml5)
 export default {
-  name: "MainComp"
+  name: "MainComp",
+  components: {
+    FontAwesomeIcon
+  },
 }
 </script>
 
