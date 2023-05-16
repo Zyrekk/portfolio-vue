@@ -110,8 +110,7 @@ export default {
 
 
 .MainContainer {
-  color: white;
-  margin-top: 6rem;
+  margin-top: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;

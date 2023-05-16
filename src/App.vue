@@ -1,20 +1,25 @@
 <template>
-  <HeaderComp/>
-  <MainComp/>
-  <ProjectsComp/>
+  <LightEffectComp/>
+  <div class="lightMode">
+    <HeaderComp/>
+    <MainComp/>
+    <ProjectsComp/>
+  </div>
 </template>
 
 <script>
 import HeaderComp from "@/components/HeaderComp.vue";
 import MainComp from "@/components/MainComp.vue";
 import ProjectsComp from "@/components/ProjectsComp.vue";
+import LightEffectComp from "@/components/LightEffectComp.vue";
 
 export default {
   name: 'App',
   components: {
     HeaderComp,
     MainComp,
-    ProjectsComp
+    ProjectsComp,
+    LightEffectComp
   }
 }
 </script>
@@ -28,9 +33,17 @@ body {
 }
 
 #app {
-  background: black;
-  background-size: cover;
   min-height: 100vh;
   overflow-y: hidden;
+}
+
+.lightMode{
+  background: black;
+  background-size: cover;
+  color: white;
+}
+.darkMode{
+  background-size: cover;
+  color: black;
 }
 </style>
