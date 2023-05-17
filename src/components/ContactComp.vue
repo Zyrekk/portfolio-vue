@@ -1,37 +1,45 @@
 <template>
-  <form ref="refContact" class="ContactContainer" :class="{'invisible':!visibilityContact}">
+  <form ref="refContact" class="ContactContainer" :class="{'invisible':!visibilityContact}" @submit.prevent="sendEmail">
     <span class="ContactTitle">Write me a message!</span>
     <div class="Tile">
       <label for="name">Your name</label>
-      <input id="name" autocomplete="off" type="text" class="ContactInput" :class="{'light':!darkMode}">
+      <input id="name" placeholder="John Doe" v-model="name" autocomplete="off" type="text" class="ContactInput" :class="{'light':!darkMode}">
     </div>
     <div class="Tile">
-      <label for="email">Your name</label>
-      <input id="email" autocomplete="off" type="email" :class="{'ContactInput':darkMode,'ContactInput light':!darkMode}">
+      <label for="email">Your E-mail</label>
+      <input id="email" placeholder="email@example.com" v-model="email" autocomplete="off" type="email"
+             :class="{'ContactInput':darkMode,'ContactInput light':!darkMode}">
     </div>
     <div class="Tile">
-      <label for="content">Your name</label>
-      <textarea id="content" v-model="messageContent" :class="{'ContactBox':darkMode,'ContactBox light':!darkMode}"/>
+      <label for="message">Your message</label>
+      <textarea id="message" placeholder="Your message" v-model="message" :class="{'ContactBox':darkMode,'ContactBox light':!darkMode}"/>
     </div>
-    <button :class="{'SendButton':darkMode,'SendButton light':!darkMode}">Send</button>
+    <button type="submit" :class="{'SendButton':darkMode,'SendButton light':!darkMode}">Send</button>
   </form>
 </template>
 
 <script>
-import {onMounted, reactive, ref, toRefs,} from "vue";
+import {onMounted, reactive, ref, toRefs} from "vue";
+import emailjs from '@emailjs/browser';
 
 export default {
   name: "ContactComp",
   props: ["darkMode"],
   setup() {
     const state = reactive({
-      messageContent: '',
-      messageName: '',
-      messageEmail: '',
+      message: '',
+      name: '',
+      email: '',
       visibilityContact: false
     })
     const refContact = ref(null)
 
+    //reactive watch
+    // watch(()=>state.messageContent, () => {
+    //   console.log(state);
+    // });
+
+    //ref watch
     // watch(areaText, (newValue) => {
     //   console.log('Aktualna wartość pola textarea:', newValue);
     // });
@@ -49,7 +57,20 @@ export default {
       contactObserver.observe(refContact.value);
     });
 
-    return {refContact, ...toRefs(state)}
+    function sendEmail() {
+      emailjs.sendForm('service_old736l', 'template_x0pfcrc', refContact.value, 'nlowTvZb7624e9wHl')
+          .then((result) => {
+            console.log('SUCCESS!', result.text);
+          }, (error) => {
+            console.log('FAILED...', error.text);
+          });
+      state.email = ''
+      state.name = ''
+      state.email = ''
+
+    }
+
+    return {refContact, ...toRefs(state), sendEmail}
   }
 }
 </script>
@@ -73,33 +94,33 @@ export default {
 
 .Tile {
   display: flex;
-  gap:1rem;
+  gap: 1rem;
   flex-direction: column;
   width: 100%;
 }
 
-.ContactInput{
+.ContactInput {
   background: rgba(255, 255, 255, 0.11);
   border: 2px solid rgba(197, 180, 180, 0.45);
   color: white;
   transition: .3s ease;
 }
 
-.ContactInput:focus{
+.ContactInput:focus {
   background: rgba(255, 255, 255, 0.32);
 }
 
-.ContactInput.light:focus{
+.ContactInput.light:focus {
   background: rgba(75, 74, 74, 0.11);
 }
 
-.ContactInput.light{
+.ContactInput.light {
   background: rgba(255, 255, 255, 0.11);
   border: 2px solid rgba(0, 0, 0, 0.45);
   color: black;
 }
 
-.Tile label{
+.Tile label {
   font-size: 1.2rem;
 }
 
@@ -116,10 +137,10 @@ export default {
 .ContactBox {
   border-radius: 10px;
   width: 100%;
-  height: 20rem;
+  height: 14rem;
   background: rgba(255, 255, 255, 0.11);
   border: 2px solid rgba(197, 180, 180, 0.45);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   outline: none;
   color: white;
   padding: 10px;
@@ -129,10 +150,9 @@ export default {
 .ContactInput {
   border-radius: 10px;
   width: 100%;
-  height: 2rem;
   background: rgba(255, 255, 255, 0.11);
   border: 2px solid rgba(197, 180, 180, 0.45);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   outline: none;
   color: white;
   padding: 10px;
@@ -145,15 +165,9 @@ export default {
 }
 
 .ContactBox.light {
-  border-radius: 10px;
-  width: 100%;
-  height: 20rem;
   background: rgba(255, 255, 255, 0.11);
   border: 2px solid rgba(0, 0, 0, 0.45);
-  font-size: 1.5rem;
-  outline: none;
   color: black;
-  padding: 10px;
 }
 
 .ContactBox.light:focus {
@@ -186,7 +200,6 @@ export default {
   background: rgba(255, 255, 255, 0.62);
   border: 1px solid rgba(103, 102, 102, 0.73);
   color: black;
-  border-radius: 20px;
 }
 
 .SendButton.light:hover {
