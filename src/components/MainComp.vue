@@ -124,7 +124,6 @@ export default {
       const competenciesObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.5) {
-            console.log("Element is 50% or more visible");
             visibility.competencies = true
           }
           else {
@@ -137,7 +136,6 @@ export default {
       const aboutObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.5) {
-            console.log("Element is 50% or more visible");
             visibility.about = true
           }
           else {
@@ -150,7 +148,6 @@ export default {
       const educationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.5) {
-            console.log("Element is 50% or more visible");
             visibility.education = true
           }
           else {
@@ -163,7 +160,6 @@ export default {
       const experienceObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.5) {
-            console.log("Element is 50% or more visible");
             visibility.experience = true
           }
           else {

@@ -1,8 +1,8 @@
 <template>
   <div class="ProjectsMainContainer">
-    <div class="ProjectSectionTitle">Projects</div>
+    <span class="ProjectSectionTitle">Projects</span>
     <div class="ProjectsContainer">
-      <section class="Project">
+      <section ref="netflixProjectRef" class="Project" :class="{'invisible':!visibility.netflixProject}">
         <img :src="netflix" alt="netflix dashboard view image"/>
         <h4>Netflix - Dashboard view</h4>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, qui.</div>
@@ -15,7 +15,7 @@
           </a>
         </div>
       </section>
-      <section class="Project">
+      <section ref="spotifyPlayListProjectRef" class="Project" :class="{'invisible':!visibility.spotifyPlayListProject}">
         <img :src="spotify" alt="spotify dashboard view image"/>
         <h4>Spotify - Playlist view</h4>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, qui.</div>
@@ -28,7 +28,7 @@
           </a>
         </div>
       </section>
-      <section class="Project">
+      <section ref="spotifyLoginProjectRef" class="Project" :class="{'invisible':!visibility.spotifyLoginProject}">
         <img :src="spotifyLogin" alt="spotify login view image"/>
         <h4>Spotify - Login & register view</h4>
         <div>Simple spotify login and register form with data validation</div>
@@ -47,9 +47,62 @@
 </template>
 
 <script>
+import {onMounted, reactive, toRefs} from "vue";
+
 export default {
   name: "ProjectsComp",
   props:["darkMode"],
+  setup(){
+    const visibility=reactive({
+      netflixProject:false,
+      spotifyPlayListProject:false,
+      spotifyLoginProject:false,
+    })
+    const refElements=reactive({
+      netflixProjectRef:null,
+      spotifyPlayListProjectRef:null,
+      spotifyLoginProjectRef:null,
+    })
+    onMounted(() => {
+      const netflixProjectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            visibility.netflixProject = true
+          }
+          else {
+            visibility.netflixProject = false
+          }
+        })
+      }, {threshold: 0.5});
+      netflixProjectObserver.observe(refElements.netflixProjectRef);
+
+      const spotifyPlayListProjectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            visibility.spotifyPlayListProject = true
+          }
+          else {
+            visibility.spotifyPlayListProject = false
+          }
+        })
+      }, {threshold: 0.5});
+      spotifyPlayListProjectObserver.observe(refElements.spotifyPlayListProjectRef);
+
+      const SpotifyLoginProjectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            visibility.spotifyLoginProject = true
+          }
+          else {
+            visibility.spotifyLoginProject = false
+          }
+        })
+      }, {threshold: 0.5});
+      SpotifyLoginProjectObserver.observe(refElements.spotifyLoginProjectRef);
+    });
+
+    return {...toRefs(refElements), visibility}
+  },
   data() {
     return {
       netflix: require('./../assets/netflix.png'),
@@ -90,11 +143,17 @@ export default {
 
 .Project {
   z-index: 10;
+  opacity: 1;
   padding: 15px;
   display: flex;
   flex-direction: column;
   width: 19rem;
   border-radius: 10px;
+  transition: .7s ease;
+}
+
+.Project.invisible{
+  opacity: 0;
 }
 
 .Project img {
