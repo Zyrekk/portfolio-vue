@@ -6,11 +6,27 @@
         <img :src="netflix" alt="netflix dashboard view image"/>
         <h4>Netflix - Dashboard view</h4>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, qui.</div>
+        <div class="ProjectButtons">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
+            <p>GitHub</p>
+          </a>
+          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
+            <p>Live demo</p>
+          </a>
+        </div>
       </section>
       <section class="Project">
         <img :src="spotify" alt="spotify dashboard view image"/>
         <h4>Spotify - Playlist view</h4>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, qui.</div>
+        <div class="ProjectButtons">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
+            <p>GitHub</p>
+          </a>
+          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
+            <p>Live demo</p>
+          </a>
+        </div>
       </section>
       <section class="Project">
         <img :src="spotifyLogin" alt="spotify login view image"/>
@@ -84,6 +100,7 @@ export default {
 .Project img {
   border-radius: 10px;
   width: 100%;
+  aspect-ratio: 16/9;
   margin: 0 auto;
 }
 

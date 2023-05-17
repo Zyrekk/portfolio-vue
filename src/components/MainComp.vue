@@ -1,7 +1,7 @@
 <template>
   <div class="MainContainer">
     <div class="TilesContainer">
-      <div class="Box" :class="{'light':!darkMode}">
+      <div ref="about" class="Box" :class="{'light':!darkMode,'invisible':!visibility.about}">
         <h3 :class="{'light':!darkMode}">About me</h3>
         <div class="BoxContent">
                         <span>
@@ -11,7 +11,7 @@
                         </span>
         </div>
       </div>
-      <div class="Box" :class="{'light':!darkMode}">
+      <div ref="education" class="Box" :class="{'light':!darkMode,'invisible':!visibility.education}">
         <h3 :class="{'light':!darkMode}">Education</h3>
         <div class="BoxContent">
           <div class="EducationTile">
@@ -31,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="Box" :class="{'light':!darkMode}">
+      <div ref="experience" class="Box" :class="{'light':!darkMode,'invisible':!visibility.experience}">
         <h3 :class="{'light':!darkMode}">Experience</h3>
         <div class="BoxContent">
           <div class="ExperienceTile">
@@ -52,39 +52,39 @@
           </div>
         </div>
       </div>
-      <div class="Box" :class="{'light':!darkMode}">
+      <div ref="competencies" class="Box" :class="{'light':!darkMode,'invisible':!visibility.competencies}">
         <h3 :class="{'light':!darkMode}">Competencies</h3>
         <div class="CompetenciesContent">
           <div class="CompetenciesTile">
             <span>HTML</span>
-            <font-awesome-icon :icon="['fab', 'html5']" size="3x" />
-              <span>11 months</span>
+            <font-awesome-icon :icon="['fab', 'html5']" size="3x"/>
+            <span>11 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>CSS</span>
-            <font-awesome-icon :icon="['fab', 'css3-alt']" size="3x" />
-              <span>10 months</span>
+            <font-awesome-icon :icon="['fab', 'css3-alt']" size="3x"/>
+            <span>10 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>JAVASCRIPT</span>
-            <font-awesome-icon :icon="['fab', 'square-js']" size="3x" />
-              <span>8 months</span>
+            <font-awesome-icon :icon="['fab', 'square-js']" size="3x"/>
+            <span>8 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>REACT.JS</span>
-            <font-awesome-icon :icon="['fab', 'react']" size="3x" />
-              <span>5 months</span>
+            <font-awesome-icon :icon="['fab', 'react']" size="3x"/>
+            <span>5 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>VUE.JS</span>
-            <font-awesome-icon :icon="['fab', 'vuejs']" size="3x" />
-              <span>1 month</span>
+            <font-awesome-icon :icon="['fab', 'vuejs']" size="3x"/>
+            <span>1 month</span>
           </div>
 
           <div class="CompetenciesTile">
             <span>JAVA</span>
-            <font-awesome-icon :icon="['fab', 'java']" size="3x" />
-              <span>15 months</span>
+            <font-awesome-icon :icon="['fab', 'java']" size="3x"/>
+            <span>15 months</span>
           </div>
         </div>
       </div>
@@ -94,17 +94,90 @@
 </template>
 
 <script>
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faJava,faVuejs,faReact,faSquareJs,faCss3Alt,faHtml5} from '@fortawesome/free-brands-svg-icons'
-library.add(faJava,faVuejs,faReact,faSquareJs,faCss3Alt,faHtml5)
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+import {faJava, faVuejs, faReact, faSquareJs, faCss3Alt, faHtml5} from '@fortawesome/free-brands-svg-icons'
+import {onMounted, reactive, toRefs} from "vue";
+
+library.add(faJava, faVuejs, faReact, faSquareJs, faCss3Alt, faHtml5)
 export default {
   name: "MainComp",
-  props:["darkMode"],
+  props: ["darkMode"],
   components: {
     FontAwesomeIcon
   },
+  setup() {
+    const visibility=reactive({
+      competencies:false,
+      about:false,
+      education:false,
+      experience:false
+    })
+    const refElements=reactive({
+      competencies:null,
+      about:null,
+      education:null,
+      experience:null
+    })
+
+    onMounted(() => {
+      const competenciesObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            console.log("Element is 50% or more visible");
+            visibility.competencies = true
+          }
+          else {
+            visibility.competencies = false
+          }
+        })
+      }, {threshold: 0.5});
+      competenciesObserver.observe(refElements.competencies);
+
+      const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            console.log("Element is 50% or more visible");
+            visibility.about = true
+          }
+          else {
+            visibility.about = false
+          }
+        })
+      }, {threshold: 0.5});
+      aboutObserver.observe(refElements.about);
+
+      const educationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            console.log("Element is 50% or more visible");
+            visibility.education = true
+          }
+          else {
+            visibility.education = false
+          }
+        })
+      }, {threshold: 0.5});
+      educationObserver.observe(refElements.education);
+
+      const experienceObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            console.log("Element is 50% or more visible");
+            visibility.experience = true
+          }
+          else {
+            visibility.experience = false
+          }
+        })
+      }, {threshold: 0.5});
+      experienceObserver.observe(refElements.experience);
+    });
+    return {...toRefs(refElements), visibility}
+  },
 }
+
+
 </script>
 
 <style scoped>
@@ -130,6 +203,7 @@ export default {
 }
 
 .Box {
+  opacity: 1;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -137,9 +211,15 @@ export default {
   width: 40%;
   border-radius: 20px;
   border: 3px solid rgba(255, 255, 255, .3);
+  transition: .3s ease;
 }
 
-.Box.light{
+.Box.invisible {
+  opacity: 0;
+
+}
+
+.Box.light {
   border: 3px solid rgb(5, 5, 5);
 
 }
@@ -160,7 +240,7 @@ export default {
   border-radius: 20px;
 }
 
-.Box h3.light:after{
+.Box h3.light:after {
   border: 1px solid #000000;
 
 }
