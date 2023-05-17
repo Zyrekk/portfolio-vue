@@ -1,9 +1,9 @@
 <template>
-  <LightEffectComp/>
-  <div class="lightMode">
-    <HeaderComp/>
-    <MainComp/>
-    <ProjectsComp/>
+  <LightEffectComp :darkMode="state.darkMode"/>
+  <div :class="state.darkMode ? 'darkMode' : 'lightMode'">
+    <HeaderComp :handleDarkMode="handleDarkMode" :darkMode="state.darkMode"/>
+    <MainComp :darkMode="state.darkMode"/>
+    <ProjectsComp :darkMode="state.darkMode"/>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ import HeaderComp from "@/components/HeaderComp.vue";
 import MainComp from "@/components/MainComp.vue";
 import ProjectsComp from "@/components/ProjectsComp.vue";
 import LightEffectComp from "@/components/LightEffectComp.vue";
+import {reactive} from "vue";
 
 export default {
   name: 'App',
@@ -20,6 +21,17 @@ export default {
     MainComp,
     ProjectsComp,
     LightEffectComp
+  },
+  setup() {
+    const state = reactive({
+      darkMode: true,
+    })
+    console.log(state.darkMode)
+
+    const handleDarkMode=()=>{
+      state.darkMode=!state.darkMode
+    }
+    return{state,handleDarkMode}
   }
 }
 </script>
@@ -37,12 +49,14 @@ body {
   overflow-y: hidden;
 }
 
-.lightMode{
+.darkMode {
   background: black;
   background-size: cover;
   color: white;
 }
-.darkMode{
+
+.lightMode {
+  background: #cde8c6;
   background-size: cover;
   color: black;
 }

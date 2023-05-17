@@ -17,10 +17,10 @@
         <h4>Spotify - Login & register view</h4>
         <div>Simple spotify login and register form with data validation</div>
         <div class="ProjectButtons">
-          <a href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
             <p>GitHub</p>
           </a>
-          <a href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
+          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
             <p>Live demo</p>
           </a>
         </div>
@@ -33,6 +33,7 @@
 <script>
 export default {
   name: "ProjectsComp",
+  props:["darkMode"],
   data() {
     return {
       netflix: require('./../assets/netflix.png'),
@@ -53,11 +54,13 @@ export default {
 }
 
 .ProjectSectionTitle {
+  z-index: 10;
   margin-top: 2rem;;
   font-size: 2rem;
 }
 
 .ProjectsContainer {
+  z-index: 10;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -70,6 +73,7 @@ export default {
 }
 
 .Project {
+  z-index: 10;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -104,6 +108,15 @@ export default {
   width: 100%;
   bottom: 0;
   border-bottom: 2px solid white;
+  transition: .2s;
+}
+
+.ProjectButtons a.light::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  bottom: 0;
+  border-bottom: 2px solid #000000;
   transition: .2s;
 }
 </style>

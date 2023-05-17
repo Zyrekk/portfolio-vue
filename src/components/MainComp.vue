@@ -1,8 +1,8 @@
 <template>
   <div class="MainContainer">
     <div class="TilesContainer">
-      <div class="Box">
-        <h3>About me</h3>
+      <div class="Box" :class="{'light':!darkMode}">
+        <h3 :class="{'light':!darkMode}">About me</h3>
         <div class="BoxContent">
                         <span>
                             I am a third year IT student. Frontend interested me more about 7 months ago after classes
@@ -11,18 +11,18 @@
                         </span>
         </div>
       </div>
-      <div class="Box">
-        <h3>Education</h3>
+      <div class="Box" :class="{'light':!darkMode}">
+        <h3 :class="{'light':!darkMode}">Education</h3>
         <div class="BoxContent">
           <div class="EducationTile">
-            <div class="EducationContent">
+            <div class="EducationContent" :class="{'light':!darkMode}">
               <div class="EduPlace">
                 <span>Nicolaus Copernicus University in Torun</span>
                 <div class="Period">2019 - up</div>
               </div>
               <span>IT - engineering studies</span>
             </div>
-            <div class="EducationContent">
+            <div class="EducationContent" :class="{'light':!darkMode}">
               <div class="EduPlace">
                 <span>I High School in Malbork</span>
                 <div class="Period">2016 - 2019</div>
@@ -31,18 +31,18 @@
           </div>
         </div>
       </div>
-      <div class="Box">
-        <h3>Experience</h3>
+      <div class="Box" :class="{'light':!darkMode}">
+        <h3 :class="{'light':!darkMode}">Experience</h3>
         <div class="BoxContent">
           <div class="ExperienceTile">
-            <div class="ExperienceContent">
+            <div class="ExperienceContent" :class="{'light':!darkMode}">
               <div class="Place">
                 <span>JustResearch project</span>
                 <div class="Period">09.2022 - up</div>
               </div>
               <span>I am a member of a team that creates a web application for students who conduct research and need large and specific data</span>
             </div>
-            <div class="ExperienceContent">
+            <div class="ExperienceContent" :class="{'light':!darkMode}">
               <div class="Place">
                 <span>UMK Allegro classes</span>
                 <div class="Period">10.2022 - up</div>
@@ -52,8 +52,8 @@
           </div>
         </div>
       </div>
-      <div class="Box">
-        <h3>Competencies</h3>
+      <div class="Box" :class="{'light':!darkMode}">
+        <h3 :class="{'light':!darkMode}">Competencies</h3>
         <div class="CompetenciesContent">
           <div class="CompetenciesTile">
             <span>HTML</span>
@@ -100,6 +100,7 @@ import { faJava,faVuejs,faReact,faSquareJs,faCss3Alt,faHtml5} from '@fortawesome
 library.add(faJava,faVuejs,faReact,faSquareJs,faCss3Alt,faHtml5)
 export default {
   name: "MainComp",
+  props:["darkMode"],
   components: {
     FontAwesomeIcon
   },
@@ -117,6 +118,7 @@ export default {
 }
 
 .TilesContainer {
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,6 +139,11 @@ export default {
   border: 3px solid rgba(255, 255, 255, .3);
 }
 
+.Box.light{
+  border: 3px solid rgb(5, 5, 5);
+
+}
+
 .Box h3 {
   position: relative;
   width: fit-content;
@@ -151,6 +158,11 @@ export default {
   width: 100%;
   border: 1px solid white;
   border-radius: 20px;
+}
+
+.Box h3.light:after{
+  border: 1px solid #000000;
+
 }
 
 
@@ -191,11 +203,6 @@ export default {
 
 }
 
-.ExperienceContent:last-child:after {
-  height: 0;
-
-}
-
 .ExperienceContent {
   position: relative;
   display: flex;
@@ -210,6 +217,20 @@ export default {
   height: 3px;
   bottom: -10px;
   background: rgba(255, 255, 255, .3);
+}
+
+.ExperienceContent.light::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: -10px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.ExperienceContent:last-child:after {
+  height: 0;
+
 }
 
 .Place {
@@ -253,6 +274,15 @@ export default {
   height: 3px;
   bottom: -10px;
   background: rgba(255, 255, 255, .3);
+}
+
+.EducationContent.light::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: -10px;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .EducationContent:last-child:after {

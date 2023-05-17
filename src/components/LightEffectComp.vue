@@ -1,20 +1,28 @@
 <template>
-  <div class="LightEffect">
+
+  <div v-if="darkMode" class="Effect">
     <span class="Bar"></span>
     <span class="Light"></span>
     <span class="Light2"></span>
     <span class="Circle"></span>
   </div>
+  <div v-else class="Effect">
+    <span class="Bar light"></span>
+    <span class="Light light"></span>
+    <span class="Light2 light"></span>
+    <span class="Circle light"></span>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "LightEffectComp"
+  name: "LightEffectComp",
+  props: ['darkMode'],
 }
 </script>
 
 <style scoped>
-.LightEffect {
+.Effect {
   margin-top: -20px;
   width: 100%;
   position: relative;
@@ -42,6 +50,10 @@ export default {
   filter: blur(70px);
 }
 
+.Light.light{
+  background: rgba(43, 215, 92, 0.1);
+}
+
 .Light2 {
   position: absolute;
   left: 50%;
@@ -54,6 +66,12 @@ export default {
   filter: blur(70px);
 }
 
+.Light2.light{
+  background: rgba(201, 190, 190, 0.3);
+  box-shadow: 8px 8px 24px 0 rgba(201, 190, 190, 0.35);
+
+}
+
 .Circle {
   position: absolute;
   left: 50%;
@@ -64,6 +82,10 @@ export default {
   background: rgba(85, 43, 215, 0.1);
   transform: translate(-50%);
   filter: blur(60px);
+}
+
+.Circle.light{
+  background: rgba(43, 215, 92, 0.1);
 }
 
 </style>
