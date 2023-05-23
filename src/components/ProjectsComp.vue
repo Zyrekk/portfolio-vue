@@ -1,26 +1,42 @@
 <template>
   <div class="ProjectsMainContainer">
-    <div class="ProjectSectionTitle">Projects</div>
+    <span class="ProjectSectionTitle">Projects</span>
     <div class="ProjectsContainer">
-      <section class="Project">
+      <section ref="netflixProjectRef" class="Project" :class="{'invisible':!visibility.netflixProject}">
         <img :src="netflix" alt="netflix dashboard view image"/>
         <h4>Netflix - Dashboard view</h4>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, qui.</div>
+        <div class="ProjectButtons">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
+            <p>GitHub</p>
+          </a>
+          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
+            <p>Live demo</p>
+          </a>
+        </div>
       </section>
-      <section class="Project">
+      <section ref="spotifyPlayListProjectRef" class="Project" :class="{'invisible':!visibility.spotifyPlayListProject}">
         <img :src="spotify" alt="spotify dashboard view image"/>
         <h4>Spotify - Playlist view</h4>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, qui.</div>
+        <div class="ProjectButtons">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
+            <p>GitHub</p>
+          </a>
+          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
+            <p>Live demo</p>
+          </a>
+        </div>
       </section>
-      <section class="Project">
+      <section ref="spotifyLoginProjectRef" class="Project" :class="{'invisible':!visibility.spotifyLoginProject}">
         <img :src="spotifyLogin" alt="spotify login view image"/>
         <h4>Spotify - Login & register view</h4>
         <div>Simple spotify login and register form with data validation</div>
         <div class="ProjectButtons">
-          <a href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
             <p>GitHub</p>
           </a>
-          <a href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
+          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
             <p>Live demo</p>
           </a>
         </div>
@@ -31,8 +47,62 @@
 </template>
 
 <script>
+import {onMounted, reactive, toRefs} from "vue";
+
 export default {
   name: "ProjectsComp",
+  props:["darkMode"],
+  setup(){
+    const visibility=reactive({
+      netflixProject:false,
+      spotifyPlayListProject:false,
+      spotifyLoginProject:false,
+    })
+    const refElements=reactive({
+      netflixProjectRef:null,
+      spotifyPlayListProjectRef:null,
+      spotifyLoginProjectRef:null,
+    })
+    onMounted(() => {
+      const netflixProjectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            visibility.netflixProject = true
+          }
+          else {
+            visibility.netflixProject = false
+          }
+        })
+      }, {threshold: 0.5});
+      netflixProjectObserver.observe(refElements.netflixProjectRef);
+
+      const spotifyPlayListProjectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            visibility.spotifyPlayListProject = true
+          }
+          else {
+            visibility.spotifyPlayListProject = false
+          }
+        })
+      }, {threshold: 0.5});
+      spotifyPlayListProjectObserver.observe(refElements.spotifyPlayListProjectRef);
+
+      const SpotifyLoginProjectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            visibility.spotifyLoginProject = true
+          }
+          else {
+            visibility.spotifyLoginProject = false
+          }
+        })
+      }, {threshold: 0.5});
+      SpotifyLoginProjectObserver.observe(refElements.spotifyLoginProjectRef);
+    });
+
+    return {...toRefs(refElements), visibility}
+  },
   data() {
     return {
       netflix: require('./../assets/netflix.png'),
@@ -50,15 +120,16 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: white;
 }
 
 .ProjectSectionTitle {
+  z-index: 10;
   margin-top: 2rem;;
   font-size: 2rem;
 }
 
 .ProjectsContainer {
+  z-index: 10;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -71,16 +142,24 @@ export default {
 }
 
 .Project {
+  z-index: 10;
+  opacity: 1;
   padding: 15px;
   display: flex;
   flex-direction: column;
   width: 19rem;
   border-radius: 10px;
+  transition: .7s ease;
+}
+
+.Project.invisible{
+  opacity: 0;
 }
 
 .Project img {
   border-radius: 10px;
   width: 100%;
+  aspect-ratio: 16/9;
   margin: 0 auto;
 }
 
@@ -105,6 +184,15 @@ export default {
   width: 100%;
   bottom: 0;
   border-bottom: 2px solid white;
+  transition: .2s;
+}
+
+.ProjectButtons a.light::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  bottom: 0;
+  border-bottom: 2px solid #000000;
   transition: .2s;
 }
 </style>
