@@ -47,18 +47,23 @@ export default {
     onMounted(() => {
       const contactObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.intersectionRatio >= 0.5) {
+          if (entry.intersectionRatio >= 0.1) {
             state.visibilityContact = true
           } else {
             state.visibilityContact = false
           }
         })
-      }, {threshold: 0.5});
+      }, {threshold: 0.1});
       contactObserver.observe(refContact.value);
     });
 
     function sendEmail() {
-      emailjs.sendForm('service_old736l', 'template_x0pfcrc', refContact.value, 'nlowTvZb7624e9wHl')
+      const requestTemplate={
+        name:state.name,
+        email:state.email,
+        message:state.message
+      }
+      emailjs.send(process.env.VUE_APP_MAIL_SERVICE, process.env.VUE_APP_MAIL_TEMPLATE, requestTemplate, process.env.VUE_APP_MAIL_PUBLIC_KEY)
           .then((result) => {
             console.log('SUCCESS!', result.text);
           }, (error) => {
@@ -66,7 +71,7 @@ export default {
           });
       state.email = ''
       state.name = ''
-      state.email = ''
+      state.message = ''
 
     }
 
@@ -136,6 +141,7 @@ export default {
 
 .ContactBox {
   border-radius: 10px;
+  resize: none;
   width: 100%;
   height: 14rem;
   background: rgba(255, 255, 255, 0.11);
