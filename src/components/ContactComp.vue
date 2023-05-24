@@ -217,12 +217,20 @@ export default {
 
 @media screen and (max-width: 860px) {
   .ContactBox {
-    width: 70%;
-    font-size: 1.1rem;
+    font-size: .9rem;
+  }
+
+  .ContactTitle{
+    width: 110%;
+  }
+
+  .ContactInput{
+    font-size: .9rem;
   }
 
   .SendButton, .SendButton.light {
-    width: 35%;
+    width: 55%;
+    font-size: .9rem;
   }
 }
 
