@@ -2,30 +2,27 @@
   <div class="ProjectsMainContainer">
     <span class="ProjectSectionTitle">Projects</span>
     <div class="ProjectsContainer">
-      <section ref="netflixProjectRef" class="Project" :class="{'invisible':!visibility.netflixProject}">
-        <img :src="netflix" alt="netflix dashboard view image"/>
-        <h4>Netflix - Dashboard view</h4>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, qui.</div>
+      <section ref="portfolioProjectRef" class="Project" :class="{'invisible':!visibility.portfolioProject}">
+        <img :src="portfolio" alt="portfolio website image"/>
+        <h4>Portfolio - Website</h4>
+        <div>Portfolio website to learn the vue framework</div>
         <div class="ProjectButtons">
-          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/portfolio-vue" target="_blank" class="Link">
             <p>GitHub</p>
-          </a>
-          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
-            <p>Live demo</p>
           </a>
         </div>
       </section>
       <section ref="spotifyPlayListProjectRef" class="Project" :class="{'invisible':!visibility.spotifyPlayListProject}">
         <img :src="spotify" alt="spotify dashboard view image"/>
-        <h4>Spotify - Playlist view</h4>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, qui.</div>
+        <h4>Spotify - Home view - in progress...</h4>
+        <div>Simple spotify home view clone, still in progress</div>
         <div class="ProjectButtons">
-          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-login-app" target="_blank" class="Link">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-home-view" target="_blank" class="Link">
             <p>GitHub</p>
           </a>
-          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
-            <p>Live demo</p>
-          </a>
+<!--          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">-->
+<!--            <p>Live demo</p>-->
+<!--          </a>-->
         </div>
       </section>
       <section ref="spotifyLoginProjectRef" class="Project" :class="{'invisible':!visibility.spotifyLoginProject}">
@@ -54,27 +51,27 @@ export default {
   props:["darkMode"],
   setup(){
     const visibility=reactive({
-      netflixProject:false,
+      portfolioProject:false,
       spotifyPlayListProject:false,
       spotifyLoginProject:false,
     })
     const refElements=reactive({
-      netflixProjectRef:null,
+      portfolioProjectRef:null,
       spotifyPlayListProjectRef:null,
       spotifyLoginProjectRef:null,
     })
     onMounted(() => {
-      const netflixProjectObserver = new IntersectionObserver((entries) => {
+      const portfolioProjectObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.5) {
-            visibility.netflixProject = true
+            visibility.portfolioProject = true
           }
           else {
-            visibility.netflixProject = false
+            visibility.portfolioProject = false
           }
         })
       }, {threshold: 0.5});
-      netflixProjectObserver.observe(refElements.netflixProjectRef);
+      portfolioProjectObserver.observe(refElements.portfolioProjectRef);
 
       const spotifyPlayListProjectObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -105,7 +102,7 @@ export default {
   },
   data() {
     return {
-      netflix: require('./../assets/netflix.png'),
+      portfolio: require('./../assets/portfolio.png'),
       spotify: require('./../assets/spotify.png'),
       spotifyLogin: require('./../assets/mySpotify.png')
     }
@@ -161,6 +158,13 @@ export default {
   width: 100%;
   aspect-ratio: 16/9;
   margin: 0 auto;
+  transition: .3s;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+.Project img:hover{
+  transform: scale(1.05);
 }
 
 .ProjectButtons{
@@ -182,7 +186,7 @@ export default {
   position: absolute;
   content: "";
   width: 100%;
-  bottom: 0;
+  bottom: -4px;
   border-bottom: 2px solid white;
   transition: .2s;
 }
