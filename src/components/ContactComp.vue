@@ -7,14 +7,14 @@
     </div>
     <div class="Tile">
       <label for="email">Your E-mail</label>
-      <input id="email" placeholder="email@example.com" v-model="email" autocomplete="off" type="email"
-             :class="{'ContactInput':darkMode,'ContactInput light':!darkMode}">
+      <input id="email" placeholder="email@example.com" v-model="email" autocomplete="off" type="email" class="ContactInput"
+             :class="{'light':!darkMode}">
     </div>
     <div class="Tile">
       <label for="message">Your message</label>
-      <textarea id="message" placeholder="Your message" v-model="message" :class="{'ContactBox':darkMode,'ContactBox light':!darkMode}"/>
+      <textarea id="message" placeholder="Your message" v-model="message" class="ContactBox" :class="{'light':!darkMode}"/>
     </div>
-    <button type="submit" :class="{'SendButton':darkMode,'SendButton light':!darkMode}">Send</button>
+    <button type="submit" class="SendButton" :class="{'light':!darkMode}">Send</button>
   </form>
 </template>
 
