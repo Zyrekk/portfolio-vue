@@ -1,39 +1,66 @@
 <template>
-  <form ref="refContact" class="ContactContainer" :class="{'invisible':!visibilityContact}" @submit.prevent="sendEmail">
+  <form
+    ref="refContact"
+    class="ContactContainer"
+    :class="{ invisible: !visibilityContact }"
+    @submit.prevent="sendEmail"
+  >
     <span class="ContactTitle">Write me a message!</span>
     <div class="Tile">
       <label for="name">Your name</label>
-      <input id="name" placeholder="John Doe" v-model="name" autocomplete="off" type="text" class="ContactInput" :class="{'light':!darkMode}">
+      <input
+        id="name"
+        placeholder="John Doe"
+        v-model="name"
+        autocomplete="off"
+        type="text"
+        class="ContactInput"
+        :class="{ light: !darkMode }"
+      />
     </div>
     <div class="Tile">
       <label for="email">Your E-mail</label>
-      <input id="email" placeholder="email@example.com" v-model="email" autocomplete="off" type="email" class="ContactInput"
-             :class="{'light':!darkMode}">
+      <input
+        id="email"
+        placeholder="email@example.com"
+        v-model="email"
+        autocomplete="off"
+        type="email"
+        class="ContactInput"
+        :class="{ light: !darkMode }"
+      />
     </div>
     <div class="Tile">
       <label for="message">Your message</label>
-      <textarea id="message" placeholder="Your message" v-model="message" class="ContactBox" :class="{'light':!darkMode}"/>
+      <textarea
+        id="message"
+        placeholder="Your message"
+        v-model="message"
+        class="ContactBox"
+        :class="{ light: !darkMode }"
+      />
     </div>
-    <button type="submit" class="SendButton" :class="{'light':!darkMode}">Send</button>
+    <button type="submit" class="SendButton" :class="{ light: !darkMode }">
+      Send
+    </button>
   </form>
 </template>
 
 <script>
-import {onMounted, reactive, ref, toRefs} from "vue";
-import emailjs from '@emailjs/browser';
+import { onMounted, reactive, ref, toRefs } from "vue";
+import emailjs from "@emailjs/browser";
 
 export default {
   name: "ContactComp",
   props: ["darkMode"],
   setup() {
     const state = reactive({
-      message: '',
-      name: '',
-      email: '',
-      visibilityContact: false
-    })
-    const refContact = ref(null)
-
+      message: "",
+      name: "",
+      email: "",
+      visibilityContact: false,
+    });
+    const refContact = ref(null);
     //reactive watch
     // watch(()=>state.messageContent, () => {
     //   console.log(state);
@@ -45,43 +72,53 @@ export default {
     // });
 
     onMounted(() => {
-      const contactObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.intersectionRatio >= 0.1) {
-            state.visibilityContact = true
-          } else {
-            state.visibilityContact = false
-          }
-        })
-      }, {threshold: 0.1});
+      const contactObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.intersectionRatio >= 0.1) {
+              state.visibilityContact = true;
+            } else {
+              state.visibilityContact = false;
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
       contactObserver.observe(refContact.value);
     });
 
     function sendEmail() {
-      const requestTemplate={
-        name:state.name,
-        email:state.email,
-        message:state.message
-      }
-      emailjs.send(process.env.VUE_APP_MAIL_SERVICE, process.env.VUE_APP_MAIL_TEMPLATE, requestTemplate, process.env.VUE_APP_MAIL_PUBLIC_KEY)
-          .then((result) => {
-            console.log('SUCCESS!', result.text);
-          }, (error) => {
-            console.log('FAILED...', error.text);
-          });
-      state.email = ''
-      state.name = ''
-      state.message = ''
-
+      const requestTemplate = {
+        name: state.name,
+        email: state.email,
+        message: state.message,
+      };
+      emailjs
+        .send(
+          process.env.VUE_APP_MAIL_SERVICE,
+          process.env.VUE_APP_MAIL_TEMPLATE,
+          requestTemplate,
+          process.env.VUE_APP_MAIL_PUBLIC_KEY
+        )
+        .then(
+          (result) => {
+            console.log("SUCCESS!", result.text);
+          },
+          (error) => {
+            console.log("FAILED...", error.text);
+          }
+        );
+      state.email = "";
+      state.name = "";
+      state.message = "";
     }
 
-    return {refContact, ...toRefs(state), sendEmail}
-  }
-}
+    return { refContact, ...toRefs(state), sendEmail };
+  },
+};
 </script>
 
 <style scoped>
-
 .ContactContainer {
   box-sizing: border-box;
   opacity: 1;
@@ -94,7 +131,7 @@ export default {
   flex-direction: column;
   width: 40%;
   height: max-content;
-  transition: .5s ease;
+  transition: 0.5s ease;
 }
 
 .Tile {
@@ -108,7 +145,7 @@ export default {
   background: rgba(255, 255, 255, 0.11);
   border: 2px solid rgba(197, 180, 180, 0.45);
   color: white;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .ContactInput:focus {
@@ -135,7 +172,7 @@ export default {
 
 .ContactTitle {
   z-index: 10;
-  margin-top: 2rem;;
+  margin-top: 2rem;
   font-size: 2rem;
 }
 
@@ -150,7 +187,7 @@ export default {
   outline: none;
   color: white;
   padding: 10px;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .ContactInput {
@@ -162,8 +199,7 @@ export default {
   outline: none;
   color: white;
   padding: 10px;
-  transition: .3s ease;
-
+  transition: 0.3s ease;
 }
 
 .ContactBox:focus {
@@ -189,7 +225,7 @@ export default {
   color: white;
   border: 1px solid rgba(197, 180, 180, 0.45);
   cursor: pointer;
-  transition: .3s ease;
+  transition: 0.3s ease;
   backface-visibility: hidden;
   will-change: transform;
 }
@@ -212,27 +248,25 @@ export default {
   background: rgb(248, 246, 246);
   transform-origin: center;
   transform: scale(1.05);
-
 }
 
 @media screen and (max-width: 860px) {
   .ContactBox {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
-  .ContactTitle{
+  .ContactTitle {
     width: 110%;
   }
 
-  .ContactInput{
-    font-size: .9rem;
+  .ContactInput {
+    font-size: 0.9rem;
   }
 
-  .SendButton, .SendButton.light {
+  .SendButton,
+  .SendButton.light {
     width: 55%;
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 }
-
-
 </style>
