@@ -1,5 +1,6 @@
 <template>
   <div :class="state.darkMode ? 'darkMode' : 'lightMode'">
+    <notifications />
     <HeaderComp :handleDarkMode="handleDarkMode" :darkMode="state.darkMode"/>
     <MainComp :darkMode="state.darkMode"/>
     <ProjectsComp :darkMode="state.darkMode"/>
@@ -12,7 +13,7 @@ import HeaderComp from "@/components/HeaderComp.vue";
 import MainComp from "@/components/MainComp.vue";
 import ProjectsComp from "@/components/ProjectsComp.vue";
 import ContactComp from "@/components/ContactComp.vue";
-import {reactive} from "vue";
+import {onMounted, reactive} from "vue";
 
 export default {
   name: 'App',
@@ -24,12 +25,17 @@ export default {
   },
   setup() {
     const state = reactive({
-      darkMode: true,
-    })
+      darkMode: localStorage.getItem('mode') === 'true', // Set initial value based on localStorage
+    });
 
-    const handleDarkMode=()=>{
-      state.darkMode=!state.darkMode
-    }
+    onMounted(() => {
+      state.darkMode = localStorage.getItem('mode') === 'true'; // Update state.darkMode
+    });
+
+    const handleDarkMode = () => {
+      state.darkMode = !state.darkMode;
+      localStorage.setItem('mode', state.darkMode);
+    };
     return{state,handleDarkMode}
   }
 }
