@@ -5,6 +5,8 @@
     <MainComp :darkMode="state.darkMode"/>
     <ProjectsComp :darkMode="state.darkMode"/>
     <ContactComp :darkMode="state.darkMode"/>
+    <FooterComp/>
+
   </div>
 </template>
 
@@ -13,6 +15,7 @@ import HeaderComp from "@/components/HeaderComp.vue";
 import MainComp from "@/components/MainComp.vue";
 import ProjectsComp from "@/components/ProjectsComp.vue";
 import ContactComp from "@/components/ContactComp.vue";
+import FooterComp from "@/components/FooterComp.vue";
 import {onMounted, reactive} from "vue";
 
 export default {
@@ -22,6 +25,7 @@ export default {
     MainComp,
     ProjectsComp,
     ContactComp,
+    FooterComp,
   },
   setup() {
     const state = reactive({
