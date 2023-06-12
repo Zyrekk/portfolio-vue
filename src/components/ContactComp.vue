@@ -159,14 +159,23 @@ export default {
 }
 
 .ContactInput {
+  border-radius: 10px;
+  width: 100%;
   background: rgba(255, 255, 255, 0.11);
   border: 2px solid rgba(197, 180, 180, 0.45);
+  font-size: 1rem;
+  outline: none;
   color: white;
+  padding: 10px;
   transition: 0.3s ease;
 }
 
 .ContactInput:focus {
   background: rgba(255, 255, 255, 0.32);
+}
+
+.ContactInput:focus::placeholder {
+  color: #2c2c2c;
 }
 
 .ContactInput.light:focus {
@@ -190,7 +199,7 @@ export default {
 .ContactTitle {
   z-index: 10;
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .ContactBox {
@@ -200,19 +209,7 @@ export default {
   height: 14rem;
   background: rgba(255, 255, 255, 0.11);
   border: 2px solid rgba(197, 180, 180, 0.45);
-  font-size: 1.3rem;
-  outline: none;
-  color: white;
-  padding: 10px;
-  transition: 0.3s ease;
-}
-
-.ContactInput {
-  border-radius: 10px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.11);
-  border: 2px solid rgba(197, 180, 180, 0.45);
-  font-size: 1.3rem;
+  font-size: 1rem;
   outline: none;
   color: white;
   padding: 10px;
@@ -221,6 +218,10 @@ export default {
 
 .ContactBox:focus {
   background: rgba(255, 255, 255, 0.32);
+}
+
+.ContactBox:focus::placeholder {
+  color: #2c2c2c;
 }
 
 .ContactBox.light {
@@ -269,7 +270,7 @@ export default {
 
 @media screen and (max-width: 860px) {
   .ContactBox {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .ContactTitle {
@@ -277,7 +278,7 @@ export default {
   }
 
   .ContactInput {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .SendButton,
