@@ -58,27 +58,27 @@
           <div class="CompetenciesTile">
             <span>HTML</span>
             <font-awesome-icon :icon="['fab', 'html5']" size="3x"/>
-            <span>12 months</span>
+            <span>13 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>CSS</span>
             <font-awesome-icon :icon="['fab', 'css3-alt']" size="3x"/>
-            <span>11 months</span>
+            <span>12 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>JAVASCRIPT</span>
             <font-awesome-icon :icon="['fab', 'square-js']" size="3x"/>
-            <span>9 months</span>
+            <span>10 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>REACT.JS</span>
             <font-awesome-icon :icon="['fab', 'react']" size="3x"/>
-            <span>6 months</span>
+            <span>8 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>VUE.JS</span>
             <font-awesome-icon :icon="['fab', 'vuejs']" size="3x"/>
-            <span>1 month</span>
+            <span>2 month</span>
           </div>
           <div class="CompetenciesTile">
             <span>JAVA</span>

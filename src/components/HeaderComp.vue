@@ -2,7 +2,7 @@
   <header class="HeaderContainer">
     <div class="featureOff" :class="{'On':state.isResized}" >
       <div class="mode" :class="{'On':state.isResized}">
-        <input type="checkbox" id="toggle" checked>
+        <input type="checkbox" id="toggle" v-bind:checked="state.darkMode">
         <label @click="handleDarkMode" for="toggle" class="toggleLabel">
           <img class="sun"
                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACZ0lEQVR4nO2Zy2oUQRSGP5IMjiFBFFtcqHtjXkFF3QhCFNGH0BBvG3EjrnSvT+DtQUyWwpgY8TJu3IluxAQvUUzLgX+gHGZGq7u6ugz9QcFQ03UufapPnzoNDQ0NdfMEeMoWINf478kbRxIjuYjsAtoRHWkBO6nAiS/ACpBFcCQDngGfgR0EZBuwLIOeezqzBCx6XJ9JRy6dFpmguApeAXtDK+BPHS8r0lG5M9GcGBb6Igmgn3aJrVuKTIq/DlA6BhwB7qo8eQ980O97wGFd47IH+CaZ0Zxw7+LuvrmjQMfJVMNGR866mKwQ0S3NDWBThlqavgTMAJMaM5rrbUu79jqJcUvGfQcuDNg6LvbfRWBDa26SCKd0d82JYx7rjsuZX8BJamYCeKM7a5HwZd5J5SarNs45KXPUdhrGOLAqGWepkccyYqGEjCuScZ8a6cqIgyVkHJKM1wHtYgp4NyL/WwHosq55W1eUaclYK2GHtyP9Veya5qcjO7JIYHoZy152RZmtYmsVfdgvU5xrkvGAGjkvI1aVSn2xNS8kw1J5bdjp7a0MsbLDlwWt7VZxEvTljIzZUNnxr5zQGitv5kiEO44z83/ZZuOKRK9ovE1CjDnO5Nr3V5WRpjRmNdd7JjblRJHSJigTOme4nHbe9qNGd8B2srZP9Ock0ynv44BTXUsZ6JGq2nUNayg81H/9BlvEPsU+6rrNh06g8rulhlweq/lQZcsmRt8sWt8pq9qZSTUUioTe94tV5jhjOrcTkP3Az8hN7BXgB7CPwByI/FmhLZ3JkNyHnqI0jqTGlonIUhVn7IaGBrz4DejQ596rineIAAAAAElFTkSuQmCC">
@@ -34,17 +34,22 @@
         <a href="https://pl.linkedin.com/in/konrad-żyra-a8131226a" target="_blank" class="Link" :class="{'light':!darkMode}">
           <p>Konrad Żyra</p>
         </a>
-        <div :class="darkMode?'SingleIcon':'SingleIcon light'">
-          <font-awesome-icon :icon="['fab', 'linkedin-in']" size="lg"/>
-        </div>
+        <a href="https://pl.linkedin.com/in/konrad-żyra-a8131226a" target="_blank" :class="{'light':!darkMode}">
+          <div :class="darkMode?'SingleIcon':'SingleIcon light'">
+            <font-awesome-icon :icon="['fab', 'linkedin-in']" size="lg"/>
+          </div>
+        </a>
       </div>
       <div class="InfoTile">
         <a href="https://github.com/Zyrekk" target="_blank" class="Link" :class="{'light':!darkMode}">
           <p>GitHub</p>
         </a>
-        <div :class="darkMode?'SingleIcon':'SingleIcon light'">
-          <font-awesome-icon :icon="['fab', 'github']" size="xl"/>
-        </div>
+        <a href="https://github.com/Zyrekk" target="_blank" :class="{'light':!darkMode}">
+          <div :class="darkMode?'SingleIcon':'SingleIcon light'">
+            <font-awesome-icon :icon="['fab', 'github']" size="xl"/>
+          </div>
+        </a>
+
       </div>
     </div>
   </header>
@@ -67,10 +72,10 @@ export default {
   components: {
     FontAwesomeIcon,
   },
-  setup(){
+  setup(props){
     const state =reactive({
       isResized:false,
-      darkMode:true
+      darkMode:props.darkMode
     })
 
     const handleResize=()=>{

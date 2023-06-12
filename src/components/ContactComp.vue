@@ -49,11 +49,13 @@
 <script>
 import { onMounted, reactive, ref, toRefs } from "vue";
 import emailjs from "@emailjs/browser";
+import { useNotification } from "@kyvg/vue3-notification";
 
 export default {
   name: "ContactComp",
   props: ["darkMode"],
   setup() {
+    const notification = useNotification()
     const state = reactive({
       message: "",
       name: "",
@@ -102,15 +104,30 @@ export default {
         )
         .then(
           (result) => {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            })
             console.log("SUCCESS!", result.text);
+            state.email = "";
+            state.name = "";
+            state.message = "";
+            notification.notify({
+              title: "Message has been sent 😎",
+              type:'success'
+            });
           },
           (error) => {
             console.log("FAILED...", error.text);
+            state.email = "";
+            state.name = "";
+            state.message = "";
+            notification.notify({
+              title: "Something went wrong, try again later 😞",
+              type:'error'
+            });
           }
         );
-      state.email = "";
-      state.name = "";
-      state.message = "";
     }
 
     return { refContact, ...toRefs(state), sendEmail };
