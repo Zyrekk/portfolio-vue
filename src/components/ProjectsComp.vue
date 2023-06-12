@@ -3,7 +3,9 @@
     <span class="ProjectSectionTitle">Projects</span>
     <div class="ProjectsContainer">
       <section ref="portfolioProjectRef" class="Project" :class="{'invisible':!visibility.portfolioProject}">
-        <img :src="portfolio" alt="portfolio website image"/>
+        <a href="https://github.com/Zyrekk/portfolio-vue" target="_blank" class="Link">
+          <img :src="portfolio" alt="portfolio website image"/>
+        </a>
         <h4>Portfolio - Website</h4>
         <div>Portfolio website to learn the vue framework</div>
         <div class="ProjectButtons">
@@ -12,21 +14,10 @@
           </a>
         </div>
       </section>
-      <section ref="spotifyPlayListProjectRef" class="Project" :class="{'invisible':!visibility.spotifyPlayListProject}">
-        <img :src="spotify" alt="spotify dashboard view image"/>
-        <h4>Spotify - Home view - in progress...</h4>
-        <div>Simple spotify home view clone, still in progress</div>
-        <div class="ProjectButtons">
-          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-home-view" target="_blank" class="Link">
-            <p>GitHub</p>
-          </a>
-<!--          <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">-->
-<!--            <p>Live demo</p>-->
-<!--          </a>-->
-        </div>
-      </section>
       <section ref="spotifyLoginProjectRef" class="Project" :class="{'invisible':!visibility.spotifyLoginProject}">
-        <img :src="spotifyLogin" alt="spotify login view image"/>
+        <a href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
+          <img :src="spotifyLogin" alt="spotify login view image"/>
+        </a>
         <h4>Spotify - Login & register view</h4>
         <div>Simple spotify login and register form with data validation</div>
         <div class="ProjectButtons">
@@ -35,6 +26,33 @@
           </a>
           <a :class="{'light':!darkMode}" href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
             <p>Live demo</p>
+          </a>
+        </div>
+      </section>
+      <section ref="weatherProjectRef" class="Project" :class="{'invisible':!visibility.weatherProject}">
+        <a href="https://konradzyra-weather.netlify.app" target="_blank" class="Link">
+          <img :src="weather" alt="weather application"/>
+        </a>
+        <h4>Weather app</h4>
+        <div>Simple weather app made using openweather api</div>
+        <div class="ProjectButtons">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/weather-app-vue" target="_blank" class="Link">
+            <p>GitHub</p>
+          </a>
+          <a :class="{'light':!darkMode}" href="https://konradzyra-weather.netlify.app" target="_blank" class="Link">
+            <p>Live demo</p>
+          </a>
+        </div>
+      </section>
+      <section ref="spotifyPlayListProjectRef" class="Project" :class="{'invisible':!visibility.spotifyPlayListProject}">
+        <a href="https://github.com/Zyrekk/spotify-home-view" target="_blank" class="Link">
+          <img :src="spotify" alt="spotify dashboard view image"/>
+        </a>
+        <h4>Spotify - Home view - in progress...</h4>
+        <div>Simple spotify home view clone, still in progress</div>
+        <div class="ProjectButtons">
+          <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/spotify-home-view" target="_blank" class="Link">
+            <p>GitHub</p>
           </a>
         </div>
       </section>
@@ -54,11 +72,13 @@ export default {
       portfolioProject:false,
       spotifyPlayListProject:false,
       spotifyLoginProject:false,
+      weatherProject:false,
     })
     const refElements=reactive({
       portfolioProjectRef:null,
       spotifyPlayListProjectRef:null,
       spotifyLoginProjectRef:null,
+      weatherProjectRef:null,
     })
     onMounted(() => {
       const portfolioProjectObserver = new IntersectionObserver((entries) => {
@@ -72,6 +92,18 @@ export default {
         })
       }, {threshold: 0.5});
       portfolioProjectObserver.observe(refElements.portfolioProjectRef);
+
+      const weatherProjectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.5) {
+            visibility.weatherProject = true
+          }
+          else {
+            visibility.weatherProject = false
+          }
+        })
+      }, {threshold: 0.5});
+      weatherProjectObserver.observe(refElements.weatherProjectRef);
 
       const spotifyPlayListProjectObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -104,7 +136,8 @@ export default {
     return {
       portfolio: require('./../assets/portfolio.png'),
       spotify: require('./../assets/spotify.png'),
-      spotifyLogin: require('./../assets/mySpotify.png')
+      spotifyLogin: require('./../assets/mySpotify.png'),
+      weather: require('./../assets/weather.png')
     }
   },
 }
