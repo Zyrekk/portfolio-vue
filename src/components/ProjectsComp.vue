@@ -33,7 +33,7 @@
         <a href="https://konradzyra-weather.netlify.app" target="_blank" class="Link">
           <img :src="weather" alt="weather application"/>
         </a>
-        <h4>Weather app</h4>
+        <h4>Weather - App</h4>
         <div>Simple weather app made using openweather api</div>
         <div class="ProjectButtons">
           <a :class="{'light':!darkMode}" href="https://github.com/Zyrekk/weather-app-vue" target="_blank" class="Link">
