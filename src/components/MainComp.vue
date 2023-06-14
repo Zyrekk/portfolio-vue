@@ -5,9 +5,9 @@
         <h3 :class="{'light':!darkMode}">About me</h3>
         <div class="BoxContent">
                         <span>
-                            I am a third year IT student. Frontend interested me more about 7 months ago after classes
-                        conducted by Allegro employees. I am determined and I am working towards the goal I have set for
-                        myself. My motto is never give up.
+                            I am a third-year computer science student. I enjoy personal growth and acquiring new experiences.
+                          Programming brings me pleasure. I am ambitious and determined. I am working towards the goal I have set for
+                        myself. I feel comfortable working in a team and have no issues with communication.
                         </span>
         </div>
       </div>
@@ -68,22 +68,22 @@
           <div class="CompetenciesTile">
             <span>JAVASCRIPT</span>
             <font-awesome-icon :icon="['fab', 'square-js']" size="3x"/>
-            <span>10 months</span>
+            <span>11 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>REACT.JS</span>
             <font-awesome-icon :icon="['fab', 'react']" size="3x"/>
-            <span>8 months</span>
+            <span>9 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>VUE.JS</span>
             <font-awesome-icon :icon="['fab', 'vuejs']" size="3x"/>
-            <span>2 month</span>
+            <span>2 months</span>
           </div>
           <div class="CompetenciesTile">
             <span>JAVA</span>
             <font-awesome-icon :icon="['fab', 'java']" size="3x"/>
-            <span>15 months</span>
+            <span>13 months</span>
           </div>
         </div>
       </div>
@@ -106,17 +106,17 @@ export default {
     FontAwesomeIcon
   },
   setup() {
-    const visibility=reactive({
-      competencies:false,
-      about:false,
-      education:false,
-      experience:false
+    const visibility = reactive({
+      competencies: false,
+      about: false,
+      education: false,
+      experience: false
     })
-    const refElements=reactive({
-      competencies:null,
-      about:null,
-      education:null,
-      experience:null
+    const refElements = reactive({
+      competencies: null,
+      about: null,
+      education: null,
+      experience: null
     })
 
     onMounted(() => {
@@ -124,8 +124,7 @@ export default {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.5) {
             visibility.competencies = true
-          }
-          else {
+          } else {
             visibility.competencies = false
           }
         })
@@ -136,8 +135,7 @@ export default {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.5) {
             visibility.about = true
-          }
-          else {
+          } else {
             visibility.about = false
           }
         })
@@ -148,8 +146,7 @@ export default {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.5) {
             visibility.education = true
-          }
-          else {
+          } else {
             visibility.education = false
           }
         })
@@ -160,8 +157,7 @@ export default {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.5) {
             visibility.experience = true
-          }
-          else {
+          } else {
             visibility.experience = false
           }
         })
