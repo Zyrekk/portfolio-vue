@@ -3,7 +3,7 @@
 # Portfolio website
 
 #### This web application is not heavily complicated, but it is designed to be clear and user-friendly, offering a straightforward and organized presentation of my skills, projects, and accomplishments.
-## Demo
+## Live demo
 
 ![Logo](https://github.com/Zyrekk/portfolio-vue/raw/main/src/assets/portfolio.png)
 
