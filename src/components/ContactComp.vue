@@ -63,15 +63,6 @@ export default {
       visibilityContact: false,
     });
     const refContact = ref(null);
-    //reactive watch
-    // watch(()=>state.messageContent, () => {
-    //   console.log(state);
-    // });
-
-    //ref watch
-    // watch(areaText, (newValue) => {
-    //   console.log('Aktualna wartość pola textarea:', newValue);
-    // });
 
     onMounted(() => {
       const contactObserver = new IntersectionObserver(
