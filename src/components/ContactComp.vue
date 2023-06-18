@@ -16,6 +16,7 @@
         type="text"
         class="ContactInput"
         :class="{ light: !darkMode }"
+        required
       />
     </div>
     <div class="Tile">
@@ -28,6 +29,7 @@
         type="email"
         class="ContactInput"
         :class="{ light: !darkMode }"
+        required
       />
     </div>
     <div class="Tile">
@@ -38,6 +40,7 @@
         v-model="message"
         class="ContactBox"
         :class="{ light: !darkMode }"
+        required
       />
     </div>
     <button type="submit" class="SendButton" :class="{ light: !darkMode }">
