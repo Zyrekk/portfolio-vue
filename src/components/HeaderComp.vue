@@ -17,7 +17,7 @@
     </span>
     <div :class="darkMode?'Job':'Job light'">Junior Front-end Developer</div>
     <h1>Konrad Żyra</h1>
-    <div class="HeaderInfoContent">
+    <section class="HeaderInfoContent">
       <div class="InfoTile">
         <p>zyrakonrad09@gmail.com</p>
         <div :class="darkMode?'SingleIcon':'SingleIcon light'">
@@ -51,7 +51,7 @@
         </a>
 
       </div>
-    </div>
+    </section>
   </header>
 
 </template>

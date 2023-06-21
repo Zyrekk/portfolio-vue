@@ -1,8 +1,8 @@
 <template>
-  <div class="ProjectsMainContainer">
+  <section class="ProjectsMainContainer">
     <span class="ProjectSectionTitle">Projects</span>
     <div class="ProjectsContainer">
-      <section ref="portfolioProjectRef" class="Project" :class="{'invisible':!visibility.portfolioProject}">
+      <div ref="portfolioProjectRef" class="Project" :class="{'invisible':!visibility.portfolioProject}">
         <a href="https://github.com/Zyrekk/portfolio-vue" target="_blank" class="Link">
           <img :src="portfolio" alt="portfolio website image"/>
         </a>
@@ -13,8 +13,8 @@
             <p>GitHub</p>
           </a>
         </div>
-      </section>
-      <section ref="spotifyLoginProjectRef" class="Project" :class="{'invisible':!visibility.spotifyLoginProject}">
+      </div>
+      <div ref="spotifyLoginProjectRef" class="Project" :class="{'invisible':!visibility.spotifyLoginProject}">
         <a href="https://konradzyra-spotify-login.netlify.app" target="_blank" class="Link">
           <img :src="spotifyLogin" alt="spotify login view image"/>
         </a>
@@ -28,8 +28,8 @@
             <p>Live demo</p>
           </a>
         </div>
-      </section>
-      <section ref="weatherProjectRef" class="Project" :class="{'invisible':!visibility.weatherProject}">
+      </div>
+      <div ref="weatherProjectRef" class="Project" :class="{'invisible':!visibility.weatherProject}">
         <a href="https://konradzyra-weather.netlify.app" target="_blank" class="Link">
           <img :src="weather" alt="weather application"/>
         </a>
@@ -43,8 +43,8 @@
             <p>Live demo</p>
           </a>
         </div>
-      </section>
-      <section ref="spotifyPlayListProjectRef" class="Project" :class="{'invisible':!visibility.spotifyPlayListProject}">
+      </div>
+      <div ref="spotifyPlayListProjectRef" class="Project" :class="{'invisible':!visibility.spotifyPlayListProject}">
         <a href="https://github.com/Zyrekk/spotify-home-view" target="_blank" class="Link">
           <img :src="spotify" alt="spotify dashboard view image"/>
         </a>
@@ -55,10 +55,9 @@
             <p>GitHub</p>
           </a>
         </div>
-      </section>
+      </div>
     </div>
-  </div>
-
+  </section>
 </template>
 
 <script>

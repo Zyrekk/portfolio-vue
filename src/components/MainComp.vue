@@ -1,5 +1,5 @@
 <template>
-  <div class="MainContainer">
+  <section class="MainContainer">
     <div class="TilesContainer">
       <div ref="about" class="Box" :class="{'light':!darkMode,'invisible':!visibility.about}">
         <h3 :class="{'light':!darkMode}">About me</h3>
@@ -88,8 +88,7 @@
         </div>
       </div>
     </div>
-  </div>
-
+  </section>
 </template>
 
 <script>

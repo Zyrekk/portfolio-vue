@@ -1,5 +1,5 @@
 <template>
-  <div class="FooterContainer">© 2023 Konrad Żyra</div>
+  <footer class="FooterContainer">© 2023 Konrad Żyra</footer>
 </template>
 
 <script>
