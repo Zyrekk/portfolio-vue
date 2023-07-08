@@ -18,29 +18,21 @@ export default {
 body{
   margin: 0;
   padding: 0;
-
 }
 #app {
+  display: flex;
+  flex-direction: column;
   font-family: 'Lato', sans-serif;
+  align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background: #0f172a;
+  /*background: #0f172a;*/
   color: white;
+  background: #030712;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 15rem;
   min-height: 100vh;
-  overflow-y: hidden;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
