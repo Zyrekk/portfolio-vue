@@ -11,6 +11,7 @@
         <li v-if="windowWidth<=900" class="nav-container__single-link" :class="{'nav-container__single-link--active' : isBurgerClicked }" @click="handleBurgerClick">
           <font-awesome-icon :icon="['fas', 'xmark']" size="xl"/>
         </li>
+        <li class="nav-container__single-link">Home</li>
         <li class="nav-container__single-link">About</li>
         <li class="nav-container__single-link">GitHub</li>
         <li class="nav-container__single-link">Contact</li>
@@ -92,6 +93,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: end;
+  z-index: 10;
 }
 
 .nav-container__button {
@@ -159,28 +161,32 @@ export default {
     display: flex;
     align-items: start;
     justify-content: center;
-    background-color: #2c1f41aa;
-    -webkit-backdrop-filter: blur(25px);
-    backdrop-filter: blur(25px);
-    box-shadow: 0 18px 50px -10px rgba(0,0,0,.2);
     padding: 0;
     height: 100vh;
-    width: 0;
-    opacity:0;
+    opacity:1;
     top: 0;
     right: 0;
-    z-index: 5;
+    width: 60%;
+    transform: translateX(100%);
     transition: .2s ease-out;
 
   }
   .nav-container__content--active {
-    width: 60%;
-    opacity: 1;
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    background-color: #2c1f41aa;
+    box-shadow: 0 18px 50px -10px rgba(0,0,0,.5);
+    transition: .2s ease-out;
     transform: translateX(0);
   }
 
   .nav-container__dev-name {
-    padding-left: 4rem;
+    padding: 20px;
+  }
+
+  .nav-container__button{
+    margin: 0;
+    padding: 20px;
   }
   .nav-container__links{
     width: 100%;
