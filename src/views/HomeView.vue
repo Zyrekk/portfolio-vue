@@ -1,17 +1,20 @@
 <template>
   <section class="home">
     <WelcomeComponent/>
+    <MyValuesComponent/>
   </section>
 </template>
 
 <script>
 
 import WelcomeComponent from "@/components/WelcomeComponent.vue";
+import MyValuesComponent from "@/components/MyValuesComponent.vue";
 
 export default {
   name: 'HomeView',
   components:{
-    WelcomeComponent
+    WelcomeComponent,
+    MyValuesComponent
   }
 }
 </script>
