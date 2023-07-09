@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container">
+  <section class="nav-container">
     <a class="nav-container__dev-name" href="">zyrekk.dev</a>
         <button v-if="windowWidth<=900&&!isBurgerClicked" @click="handleBurgerClick" class="nav-container__button">
           <div class="nav-container__line"/>
@@ -11,13 +11,13 @@
         <li v-if="windowWidth<=900" class="nav-container__single-link" :class="{'nav-container__single-link--active' : isBurgerClicked }" @click="handleBurgerClick">
           <font-awesome-icon :icon="['fas', 'xmark']" size="xl"/>
         </li>
-        <li class="nav-container__single-link">Home</li>
+        <li v-if="windowWidth<=900" class="nav-container__single-link">Home</li>
         <li class="nav-container__single-link">About</li>
         <li class="nav-container__single-link">GitHub</li>
         <li class="nav-container__single-link">Contact</li>
       </ul>
     </nav>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -145,6 +145,7 @@ export default {
   .nav-container {
     max-width: 100vw;
     justify-content: space-between;
+    margin-top: 2rem;
   }
 
   .nav-container__links {
@@ -169,12 +170,12 @@ export default {
     width: 60%;
     transform: translateX(100%);
     transition: .2s ease-out;
-
   }
+
   .nav-container__content--active {
     -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
-    background-color: #2c1f41aa;
+    background-color: rgba(76, 83, 157, 0.6);
     box-shadow: 0 18px 50px -10px rgba(0,0,0,.5);
     transition: .2s ease-out;
     transform: translateX(0);
@@ -203,6 +204,5 @@ export default {
       background: rgba(0, 0, 0, 0.75);
     }
   }
-
 }
 </style>
