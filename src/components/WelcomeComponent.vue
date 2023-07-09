@@ -6,55 +6,64 @@
         <span class="welcome__position-text-secondary">developer</span>
       </div>
       <h3 class="welcome__welcome-text">I'm pleased to welcome you to my frontend world, where you can get to know me
-        and my skills better</h3>
+        and my skills better
+      </h3>
+      <button class="welcome__contact-button">
+        <div class="welcome__wave welcome__wave--1"/>
+<!--        <div class="welcome__wave welcome__wave&#45;&#45;2"/>-->
+<!--        <div class="welcome__wave welcome__wave&#45;&#45;3"/>-->
+        <span class="welcome__contact-text">Contact me</span>
+      </button>
+
     </div>
     <div class="welcome__carousel">
       <div class="welcome__box-shadow ">
-        <img class="welcome_image" :src="images[imageSlider.first%3]"/>
-        <img class="welcome_image welcome_image--hidden" :class="{'welcome_image--active':imageSlider.xd}"
-             :src="images[(imageSlider.first+1)%3]"/>
+        <img class="welcome_image" :src="images[image%4]"/>
+        <img class="welcome_image welcome_image--hidden" :class="{'welcome_image--active':transition}"
+             :src="images[(image+1)%4]"/>
       </div>
       <div class="welcome__box-shadow-second">
         <div class="welcome__box-shadow ">
-          <img class="welcome_image" :src="images[(imageSlider.first+2)%3]"/>
-          <img class="welcome_image welcome_image--hidden" :class="{'welcome_image--active':imageSlider.xd}"
-               :src="images[(imageSlider.first+3)%3]"/>
+          <img class="welcome_image" :src="images[(image+1)%4]"/>
+          <img class="welcome_image welcome_image--hidden" :class="{'welcome_image--active':transition}"
+               :src="images[(image+2)%4]"/>
         </div>
       </div>
-      <button class="welcome__next-image" @click="handleSwitchImage">
-        <font-awesome-icon :icon="['fas', 'arrow-right']"/>
-      </button>
     </div>
   </section>
   <div class="absolute"></div>
 
 </template>
 <script>
-import {library} from '@fortawesome/fontawesome-svg-core'
-import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
-import {faArrowRight} from '@fortawesome/free-solid-svg-icons'
-import {reactive} from "vue";
+// import {library} from '@fortawesome/fontawesome-svg-core'
+// import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+// import {faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import {ref, watch} from "vue";
 
-library.add(faArrowRight)
+// library.add(faArrowRight)
 export default {
   name: "WelcomeComponent",
-  components: {FontAwesomeIcon},
+  // components: {FontAwesomeIcon},
   setup() {
-    const imageSlider = reactive({
-      first: 0,
-      xd: false
-    })
-
-    const handleSwitchImage = () => {
-      imageSlider.xd = true
-      setTimeout(()=>{
-        imageSlider.first=imageSlider.first+1
-        imageSlider.xd=false
-      },1000)
+    const image = ref(0)
+    const transition = ref(false)
+    const switchImage = () => {
+      transition.value = true
+      setTimeout(() => {
+        image.value = image.value + 1
+        transition.value = false
+      }, 1000)
     }
+    switchImage()
+    watch(image, () => {
+      console.log('xd')
+      setTimeout(() => {
+        switchImage()
+      }, 7000)
+    })
     const images = [require('@/assets/weather.png'), require('@/assets/portfolio.png'), require('@/assets/mySpotify.png'), require('@/assets/parleto.png')]
 
-    return {imageSlider, images, handleSwitchImage}
+    return {image, transition, images}
   }
 }
 </script>
@@ -165,17 +174,67 @@ export default {
   }
 }
 
-.welcome__next-image {
+.welcome__contact-button {
   all: unset;
-  position: absolute;
   cursor: pointer;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  bottom: -180px;
-  right: 120px;
-  width: 20px;
-  height: 20px;
+  margin-top: 4rem;
+  padding: 1rem;
+  background: -webkit-linear-gradient(20deg, #2f3359, #4c539d);
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  transform-origin: center;
+  backface-visibility: hidden;
+  transition: all .2s ease-in-out;
+  &:hover{
+    background-size: revert;
+    transform-origin: center;
+    backface-visibility: hidden;
+    .welcome__contact-text {
+      transform: scale(1.05);
+      transform-origin: center;
+      backface-visibility: hidden;
+    }
+  }
+}
+
+.welcome__contact-text {
+  transition: all .1s ease-in-out;
+  font-weight: 700;
+  padding: 0 0.5rem;
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+.welcome__wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 110%;
+  height: 90%;
+  background-image:url("@/assets/Wave.svg") ;
+ }
+
+.welcome__wave--1 {
+  animation: animate 30s linear infinite;
+}
+
+.welcome__wave--2 {
+  background: red;
+}
+
+.welcome__wave--3 {
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: 200px;
+  }
+  100% {
+    background-position-x: 900px;
+  }
+
 }
 
 @keyframes float {
@@ -223,10 +282,6 @@ export default {
     margin-top: 3rem;
     margin-left: -6rem;
     width: 55%;
-  }
-  .welcome__next-image {
-    bottom: -80px;
-    right: 50px;
   }
 
 }
