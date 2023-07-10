@@ -27,7 +27,6 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /*background: #0f172a;*/
   color: white;
   background: #030712;
   position: relative;

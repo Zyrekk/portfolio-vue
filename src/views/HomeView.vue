@@ -2,6 +2,7 @@
   <section class="home">
     <WelcomeComponent/>
     <MyValuesComponent/>
+    <ProjectsContainer/>
   </section>
 </template>
 
@@ -9,12 +10,14 @@
 
 import WelcomeComponent from "@/components/WelcomeComponent.vue";
 import MyValuesComponent from "@/components/MyValuesComponent.vue";
+import ProjectsContainer from "@/components/ProjectsContainer.vue";
 
 export default {
   name: 'HomeView',
   components:{
     WelcomeComponent,
-    MyValuesComponent
+    MyValuesComponent,
+    ProjectsContainer,
   }
 }
 </script>
@@ -24,7 +27,6 @@ export default {
   box-sizing: border-box;
   margin-top: 10rem;
   width: 100%;
-  /*border: 2px solid red;*/
 }
 @media screen and (max-width: 900px) {
   .home{

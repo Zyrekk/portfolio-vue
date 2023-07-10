@@ -24,8 +24,6 @@
       </transition-group>
     </div>
   </section>
-  <div class="absolute"></div>
-
 </template>
 <script>
 // import {library} from '@fortawesome/fontawesome-svg-core'
@@ -75,8 +73,10 @@ export default {
 .welcome__left-wrapper {
   display: flex;
   flex-wrap: wrap;
+  animation: scale 2s;
   justify-content: flex-start;
   align-items: center;
+  gap: 1rem;
 }
 
 .welcome__position-text {
@@ -91,10 +91,10 @@ export default {
   font-weight: 600;
   color: #818cf8;
   font-size: 4rem;
-  padding-left: 1rem;
 }
 
 .welcome__welcome-text {
+  animation: scale 2s;
   box-sizing: border-box;
   max-width: 531.6px;
   text-align: left;
@@ -108,15 +108,27 @@ export default {
 }
 
 .welcome__box-shadow {
+  animation: scale 2s;
   overflow: hidden;
-  -webkit-box-shadow: 0px 0px 46px 16px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 0px 0px 46px 16px rgba(0, 0, 0, 1);
-  box-shadow: 0px 0px 46px 16px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
+  -moz-box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
+  box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
   width: 100%;
   border-radius: 20px;
   display: flex;
   z-index: 15;
   aspect-ratio: 1/1;
+  position: relative;
+  &:after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    -webkit-box-shadow: inset 0px 0px 46px 16px rgb(53, 58, 100);
+    -moz-box-shadow: inset 0px 0px 46px 16px rgb(53, 58, 100);
+    box-shadow: inset 0px 0px 46px 16px rgb(53, 58, 100);
+  }
 }
 
 .welcome_image {
@@ -130,11 +142,11 @@ export default {
 }
 
 .welcome__box-shadow-second {
-  border: 2px solid transparent;
+  animation: scale 2s;
   position: absolute;
-  -webkit-box-shadow: 0px 0px 46px 16px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 0px 0px 46px 16px rgba(0, 0, 0, 1);
-  box-shadow: 0px 0px 46px 16px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
+  -moz-box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
+  box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
   width: 100%;
   border-radius: 20px;
   display: flex;
@@ -144,15 +156,26 @@ export default {
   right: 0;
   transition: .2s ease-in-out;
   transform: translate(50%, 50%);
+  &:after{
+    position: absolute;
+    border-radius: 20px;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    -webkit-box-shadow: inset 0px 0px 46px 16px rgb(53, 58, 100);
+    -moz-box-shadow: inset 0px 0px 46px 16px rgb(53, 58, 100);
+    box-shadow: inset 0px 0px 46px 16px rgb(53, 58, 100);
+  }
 }
 
 .welcome__contact-button {
   all: unset;
+  animation: scale 2s;
   cursor: pointer;
   display: flex;
   margin-top: 4rem;
   padding: 1rem;
-  //background: -webkit-linear-gradient(20deg, #2f3359, #4c539d);
   border-radius: 30px;
   position: relative;
   box-sizing: border-box;
@@ -181,8 +204,6 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  background-size: cover;
-  background: rgb(145,155,245);
   background: linear-gradient(315deg, rgba(145,155,245,1) 0%, rgba(102,111,198,1) 45%, rgba(75,82,140,1) 82%);
 }
 
@@ -229,6 +250,15 @@ export default {
   transition: all 1s ease-in-out;
 }
 
+@keyframes scale {
+  0%{
+    scale: 1.2;
+  }
+  100%{
+    scale: 1;
+  }
+}
+
 @keyframes animate {
   0% {
     background-position-x: 0px;
@@ -240,17 +270,66 @@ export default {
 
 @keyframes float {
   0% {
-    box-shadow: 0 5px 15px 0px rgba(3, 7, 18, 0.6);
+    //box-shadow: 0 5px 15px 0px rgba(3, 7, 18, 0.6);
     transform: translatey(0px);
   }
   50% {
-    box-shadow: 0 25px 15px 0px rgba(3, 7, 18, 0.2);
+    //box-shadow: 0 25px 15px 0px rgba(3, 7, 18, 0.2);
     transform: translatey(-15px);
   }
   100% {
-    box-shadow: 0 5px 15px 0px rgba(3, 7, 18, 0.6);
+    //box-shadow: 0 5px 15px 0px rgba(3, 7, 18, 0.6);
     transform: translatey(0px);
   }
+}
+
+@media screen and (max-width: 1530px) {
+  .welcome__carousel{
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 1340px) {
+  .welcome{
+    flex-direction: column;
+  }
+  .welcome__carousel{
+    padding-top: 5rem;
+    margin: 0 auto;
+  }
+  .welcome__box-shadow,.welcome__box-shadow-second {
+    width: 130%;
+  }
+  .welcome__box-shadow-second {
+    transform: translate(70%, 50%);
+  }
+
+  .welcome_image {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+@media screen and (max-width: 950px) {
+  .welcome__left-wrapper{
+    flex-direction: column;
+    justify-content: unset;
+    align-items: unset;
+    gap: 0;
+  }
+  .welcome__position-text{
+    text-align: left;
+    margin-bottom: 0;
+  }
+  .welcome__welcome-text{
+    padding-top: 2rem;
+    font-size: 1.05rem;
+  }
+
 }
 
 @media screen and (max-width: 900px) {
@@ -286,14 +365,34 @@ export default {
   }
 
   .welcome__carousel {
-    margin-top: 5rem;
-    margin-left: -6rem;
+    margin-left: 8%;
     width: 55%;
+  }
+
+  .welcome__box-shadow,.welcome__box-shadow-second {
+    width: 100%;
+  }
+  .welcome__box-shadow-second {
+    transform: translate(50%, 50%);
+  }
+
+  .welcome_image {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .welcome__contact-button {
     margin-left: 1rem;
     margin-top: 2rem;
+  }
+
+  .nav-container{
+    max-width: 90vw;
   }
 }
 

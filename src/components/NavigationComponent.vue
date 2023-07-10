@@ -60,7 +60,6 @@ export default {
 <style lang="scss" scoped>
 
 .nav-container {
-  max-width: 90vw;
   overflow: hidden;
   display: flex;
   width: 100%;
@@ -71,13 +70,14 @@ export default {
 }
 
 .nav-container__dev-name {
+  animation: scale 2s;
   text-decoration: none;
   color: white;
   display: flex;
   font-weight: 600;
   font-size: 1.875rem;
   line-height: 2.25rem;
-  padding: 0 4rem;
+  padding-left: 10rem;
   transition: 0.2s ease-in-out;
   height: fit-content;
   cursor: pointer;
@@ -88,7 +88,8 @@ export default {
 }
 
 .nav-container__content {
-  padding: 0 4rem;
+  animation: scale 2s;
+  padding-right: 10rem;
   width: fit-content;
   display: flex;
   align-items: center;
@@ -141,9 +142,27 @@ export default {
   }
 }
 
+@keyframes opacity {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes scale {
+  0%{
+    scale: 1.2;
+  }
+  100%{
+    scale: 1;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .nav-container {
-    max-width: 100vw;
+    max-width: 90vw;
     justify-content: space-between;
     margin-top: 2rem;
   }
