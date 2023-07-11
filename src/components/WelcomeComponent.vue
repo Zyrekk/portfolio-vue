@@ -59,7 +59,9 @@ export default {
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  max-width: 90vw;
+  justify-content: space-between;
+  margin: auto;
+  max-width: min(1440px,90vw);
   width: 100%;
 }
 
@@ -67,7 +69,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 10rem;
 }
 
 .welcome__left-wrapper {
@@ -102,8 +103,8 @@ export default {
 
 .welcome__carousel {
   animation: float 6s ease-in-out infinite;
-  margin-left: 8rem;
-  width: 25%;
+  margin-right: 14rem;
+  width: 400px;
   position: relative;
 }
 
@@ -204,7 +205,7 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  background: linear-gradient(315deg, rgba(145,155,245,1) 0%, rgba(102,111,198,1) 45%, rgba(75,82,140,1) 82%);
+  background: linear-gradient(315deg, rgb(113, 121, 190) 0%, rgb(72, 78, 140) 45%, rgb(48, 52, 89) 82%);
 }
 
 .welcome__contact-text {
@@ -295,7 +296,7 @@ export default {
   }
   .welcome__carousel{
     padding-top: 5rem;
-    margin: 0 auto;
+    margin: 0 15%;
   }
   .welcome__box-shadow,.welcome__box-shadow-second {
     width: 130%;
@@ -313,6 +314,16 @@ export default {
     height: 100%;
     object-fit: cover;
   }
+}
+
+@media screen and (max-width: 1000px) {
+  .welcome__box-shadow,.welcome__box-shadow-second {
+    width: 100%;
+  }
+  .welcome__box-shadow-second {
+    transform: translate(70%, 50%);
+  }
+
 }
 @media screen and (max-width: 950px) {
   .welcome__left-wrapper{
@@ -393,6 +404,24 @@ export default {
 
   .nav-container{
     max-width: 90vw;
+  }
+}
+
+@media screen and (max-width: 335px) {
+  .welcome__position-text-secondary,.welcome__position-text{
+    font-size: 3rem;
+  }
+
+  .welcome__welcome-text{
+    font-size: 0.9rem;
+  }
+
+  .welcome__contact-button {
+    padding: 13px;
+  }
+
+  .welcome__contact-text{
+    font-size: 0.9rem;
   }
 }
 

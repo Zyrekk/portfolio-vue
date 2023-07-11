@@ -1,30 +1,32 @@
 <template>
   <section class="values">
-    <div class="values__item">
-      <h3 class="values__number">1</h3>
-      <div class="values__text-wrapper">
-        <span class="values__text-title">Creativity</span>
-        <span class="values__text-description">Innovative solutions</span>
+    <div class="values__wrapper">
+      <div class="values__item">
+        <h3 class="values__number">1</h3>
+        <div class="values__text-wrapper">
+          <span class="values__text-title">Creativity</span>
+          <span class="values__text-description">Innovative solutions</span>
+        </div>
       </div>
-    </div>
-    <div class="values__item">
-      <h3 class="values__number">2</h3>
-      <div class="values__text-wrapper">
-        <span class="values__text-title">Flexibility</span>
-        <span class="values__text-description">Adaptable approach</span>
+      <div class="values__item">
+        <h3 class="values__number">2</h3>
+        <div class="values__text-wrapper">
+          <span class="values__text-title">Flexibility</span>
+          <span class="values__text-description">Adaptable approach</span>
+        </div>
       </div>
-    </div>
-    <div class="values__item">
-      <h3 class="values__number">3</h3>
-      <div class="values__text-wrapper">
-        <span class="values__text-title">Passion</span>
-        <span class="values__text-description">Pixel-perfect creation</span>
+      <div class="values__item">
+        <h3 class="values__number">3</h3>
+        <div class="values__text-wrapper">
+          <span class="values__text-title">Passion</span>
+          <span class="values__text-description">Pixel-perfect creation</span>
+        </div>
       </div>
+      <div class="values__wave values__wave--1"/>
+      <div class="values__wave-2 values__wave--2"/>
+      <div class="values__blur-bottom"/>
+      <div class="values__blur-top"/>
     </div>
-    <div class="values__wave values__wave--1"/>
-    <div class="values__wave-2 values__wave--2"/>
-    <div class="values__blur-bottom"/>
-    <div class="values__blur-top"/>
   </section>
 
 </template>
@@ -38,13 +40,21 @@ export default {
 <style lang="scss" scoped>
 
 .values {
-  flex-wrap: wrap;
+  animation: scale 2s;
   display: flex;
+  justify-content: center;
   position: relative;
   background: -webkit-linear-gradient(90deg, #030712, #1b213e);
-  justify-content: space-evenly;
   width: 100%;
   margin: 18rem auto 0;
+}
+
+.values__wrapper{
+  max-width: min(1440px,90vw);
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .values__item {
@@ -55,6 +65,7 @@ export default {
 }
 
 .values__number {
+  animation: scale 2s;
   color: #acaec9;
   font-size: 3rem;
   z-index: 12;
@@ -70,12 +81,14 @@ export default {
 }
 
 .values__text-title {
+  animation: scale 2s;
   font-size: 1.3rem;
   font-weight: 500;
   z-index: 5;
 }
 
 .values__text-description {
+  animation: scale 2s;
   color: #acaec9;
   font-size: 1rem;
   font-weight: 600;
@@ -111,6 +124,7 @@ export default {
 }
 
 .values__wave-2 {
+  animation: scale 2s;
   height: 30%;
 }
 
@@ -137,6 +151,22 @@ export default {
   100% {
     background-position-x: 0px;
   }
+}
+
+@keyframes scale {
+  0% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@media screen and (max-width: 1340px) {
+  .values{
+    margin: 24rem auto 0;
+  }
+
 }
 
 @media screen and (max-width: 900px) {
@@ -168,6 +198,18 @@ export default {
   }
 }
 
+@media screen and (max-width: 850px) {
+  .values{
+    margin: 18rem auto 0;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .values{
+    margin: 14rem auto 0;
+  }
+}
+
 @media screen and (max-width: 495px) {
   .values__item {
     justify-content: flex-start;
@@ -183,7 +225,6 @@ export default {
   }
 
   .values__text-description {
-
   }
 }
 
