@@ -84,7 +84,6 @@ export default {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-
 }
 
 .card__github-link{

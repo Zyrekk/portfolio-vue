@@ -28,7 +28,7 @@ export default {
   flex-direction: column;
   width: 100%;
   position: relative;
-  margin-top: 6rem;
+  margin-top: 12rem;
 }
 
 .footer__dev {
@@ -47,7 +47,7 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .footer__button {
@@ -57,6 +57,7 @@ export default {
   border-radius: 10px;
   background: #818cf8;
   transition: .2s ease;
+  font-weight: 700;
 
   &:hover {
     background: #525aab;
@@ -80,11 +81,11 @@ export default {
 }
 
 .footer__wave--1 {
-  animation: animate 35s linear infinite;
+  animation: animate 40s linear infinite;
 }
 
 .footer__wave--2 {
-  animation: animate2 30s linear infinite;
+  animation: animate2 45s linear infinite;
 }
 
 @keyframes animate {
@@ -98,11 +99,18 @@ export default {
 
 @keyframes animate2 {
   0% {
-    background-position-x: 1440px;
-  }
-  100% {
     background-position-x: 0px;
   }
+  100% {
+    background-position-x: 1440px;
+  }
 }
+
+@media screen and (max-width: 768px) {
+  .footer {
+    margin-top: 4rem;
+  }
+}
+
 
 </style>
