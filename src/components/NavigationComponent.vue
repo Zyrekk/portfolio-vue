@@ -1,22 +1,25 @@
 <template>
   <section class="nav-container">
-    <a class="nav-container__dev-name" href="">zyrekk.dev</a>
-        <button v-if="windowWidth<=900&&!isBurgerClicked" @click="handleBurgerClick" class="nav-container__button">
-          <div class="nav-container__line"/>
-          <div class="nav-container__line"/>
-          <div class="nav-container__line"/>
-        </button>
-    <nav class="nav-container__content" :class="{'nav-container__content--active' : isBurgerClicked }">
-      <ul class="nav-container__links" :class="{'nav-container__links--active' : isBurgerClicked }">
-        <li v-if="windowWidth<=900" class="nav-container__single-link" :class="{'nav-container__single-link--active' : isBurgerClicked }" @click="handleBurgerClick">
-          <font-awesome-icon :icon="['fas', 'xmark']" size="xl"/>
-        </li>
-        <li v-if="windowWidth<=900" class="nav-container__single-link">Home</li>
-        <li class="nav-container__single-link">About</li>
-        <li class="nav-container__single-link">GitHub</li>
-        <li class="nav-container__single-link">Contact</li>
-      </ul>
-    </nav>
+    <div class="nav-container__wrapper">
+      <a class="nav-container__dev-name" href="">zyrekk.dev</a>
+      <button v-if="windowWidth<=900&&!isBurgerClicked" @click="handleBurgerClick" class="nav-container__button">
+        <div class="nav-container__line"/>
+        <div class="nav-container__line"/>
+        <div class="nav-container__line"/>
+      </button>
+      <nav class="nav-container__content" :class="{'nav-container__content--active' : isBurgerClicked }">
+        <ul class="nav-container__links" :class="{'nav-container__links--active' : isBurgerClicked }">
+          <li v-if="windowWidth<=900" class="nav-container__single-link"
+              :class="{'nav-container__single-link--active' : isBurgerClicked }" @click="handleBurgerClick">
+            <font-awesome-icon :icon="['fas', 'xmark']" size="xl"/>
+          </li>
+          <li v-if="windowWidth<=900" class="nav-container__single-link">Home</li>
+          <li class="nav-container__single-link">About</li>
+          <li class="nav-container__single-link">GitHub</li>
+          <li class="nav-container__single-link">Contact</li>
+        </ul>
+      </nav>
+    </div>
   </section>
 </template>
 
@@ -62,11 +65,19 @@ export default {
 .nav-container {
   overflow: hidden;
   display: flex;
-  width: 100%;
-  justify-content: space-between;
-  height: fit-content;
+  justify-content: center;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.nav-container__wrapper {
+  display: flex;
+  max-width: min(1440px, 90vw);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
 }
 
 .nav-container__dev-name {
@@ -77,7 +88,6 @@ export default {
   font-weight: 600;
   font-size: 1.875rem;
   line-height: 2.25rem;
-  padding-left: 10rem;
   transition: 0.2s ease-in-out;
   height: fit-content;
   cursor: pointer;
@@ -89,7 +99,6 @@ export default {
 
 .nav-container__content {
   animation: scale 2s;
-  padding-right: 10rem;
   width: fit-content;
   display: flex;
   align-items: center;
@@ -137,25 +146,26 @@ export default {
   cursor: pointer;
   color: white;
   transition: .2s ease-in-out;
+
   &:hover {
     color: #818cf8;
   }
 }
 
 @keyframes opacity {
-  0%{
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
 
 @keyframes scale {
-  0%{
+  0% {
     scale: 1.2;
   }
-  100%{
+  100% {
     scale: 1;
   }
 }
@@ -183,7 +193,7 @@ export default {
     justify-content: center;
     padding: 0;
     height: 100vh;
-    opacity:1;
+    opacity: 1;
     top: 0;
     right: 0;
     width: 60%;
@@ -195,7 +205,7 @@ export default {
     -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     background-color: rgba(76, 83, 157, 0.6);
-    box-shadow: 0 18px 50px -10px rgba(0,0,0,.5);
+    box-shadow: 0 18px 50px -10px rgba(0, 0, 0, .5);
     transition: .2s ease-out;
     transform: translateX(0);
   }
@@ -204,22 +214,24 @@ export default {
     padding: 20px;
   }
 
-  .nav-container__button{
+  .nav-container__button {
     margin: 0;
     padding: 20px;
   }
-  .nav-container__links{
+  .nav-container__links {
     width: 100%;
     gap: 0;
   }
 
-  .nav-container__single-link{
+  .nav-container__single-link {
     padding: 1rem 0;
     width: 100%;
-    &:first-child{
+
+    &:first-child {
       margin-bottom: 2rem;
     }
-    &:hover{
+
+    &:hover {
       background: rgba(0, 0, 0, 0.75);
     }
   }
