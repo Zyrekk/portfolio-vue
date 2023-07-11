@@ -3,14 +3,16 @@
     <WelcomeComponent/>
     <MyValuesComponent/>
     <ProjectsContainer/>
+    <QuickAbout/>
   </section>
 </template>
 
 <script>
 
-import WelcomeComponent from "@/components/WelcomeComponent.vue";
-import MyValuesComponent from "@/components/MyValuesComponent.vue";
-import ProjectsContainer from "@/components/ProjectsContainer.vue";
+import WelcomeComponent from "@/components/Home/WelcomeComponent.vue";
+import MyValuesComponent from "@/components/Home/MyValuesComponent.vue";
+import ProjectsContainer from "@/components/Home/ProjectsContainer.vue";
+import QuickAbout from "@/components/Home/QuickAbout.vue";
 
 export default {
   name: 'HomeView',
@@ -18,6 +20,7 @@ export default {
     WelcomeComponent,
     MyValuesComponent,
     ProjectsContainer,
+    QuickAbout
   }
 }
 </script>

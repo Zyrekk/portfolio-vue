@@ -15,7 +15,9 @@
           </li>
           <li v-if="windowWidth<=900" class="nav-container__single-link">Home</li>
           <li class="nav-container__single-link">About</li>
-          <li class="nav-container__single-link">GitHub</li>
+          <a class="nav-container__github-link" href="https://github.com/Zyrekk" rel="noreferrer" target="_blank">
+            <li class="nav-container__single-link">GitHub</li>
+          </a>
           <li class="nav-container__single-link">Contact</li>
         </ul>
       </nav>
@@ -77,7 +79,13 @@ export default {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
 
+.nav-container__github-link {
+  all: unset;
+  .nav-container__single-link:first-child {
+    margin-bottom: 0;
+  }
 }
 
 .nav-container__dev-name {

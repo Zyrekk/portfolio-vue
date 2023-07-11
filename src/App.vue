@@ -1,13 +1,15 @@
 <template>
   <NavigationComponent/>
   <router-view/>
+  <FooterContainer/>
 </template>
 
 <script>
-import NavigationComponent from "@/components/NavigationComponent.vue";
+import NavigationComponent from "@/components/Nav/NavigationComponent.vue";
+import FooterContainer from "@/components/Footer/FooterContainer.vue";
 export default {
   name:"App",
-  components:{NavigationComponent}
+  components:{FooterContainer, NavigationComponent}
 
 }
 </script>
@@ -35,7 +37,6 @@ body{
   background: #030712;
   position: relative;
   overflow: hidden;
-  padding-bottom: 15rem;
   min-height: 100vh;
 }
 </style>

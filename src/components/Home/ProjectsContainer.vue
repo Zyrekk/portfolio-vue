@@ -1,21 +1,23 @@
 <template>
-  <div class="projects">
+  <section class="projects">
     <div class="projects__text-wrapper">
       <h3 class="projects__title">Selected projects</h3>
       <div class="projects__secondary-text-wrapper">
         <span class="projects__github">Check out my </span>
+        <a class="projects__link" href="https://github.com/Zyrekk" rel="noreferrer" target="_blank">
         <span class="projects__github projects__github--color">GitHub </span>
+        </a>
         <span class="projects__github">to see more</span>
       </div>
     </div>
     <ProjectCard :info="projects[0]"/>
     <ProjectCard :info="projects[1]"/>
     <ProjectCard :info="projects[2]"/>
-  </div>
+  </section>
 </template>
 
 <script>
-import ProjectCard from "@/components/ProjectCard.vue";
+import ProjectCard from "@/components/Home/ProjectCard.vue";
 
 export default {
   name: "ProjectsContainer",
@@ -90,6 +92,10 @@ export default {
   &:hover{
     color: #3f50e7;
   }
+}
+
+.projects__link{
+  all: unset;
 }
 
 @keyframes scale {
