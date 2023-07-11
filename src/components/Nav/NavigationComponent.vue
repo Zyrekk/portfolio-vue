@@ -1,7 +1,7 @@
 <template>
   <section class="nav-container">
     <div class="nav-container__wrapper">
-      <a class="nav-container__dev-name" href="">zyrekk.dev</a>
+      <h3 class="nav-container__dev-name" @click="handleHome">zyrekk.dev</h3>
       <button v-if="windowWidth<=900&&!isBurgerClicked" @click="handleBurgerClick" class="nav-container__button">
         <div class="nav-container__line"/>
         <div class="nav-container__line"/>
@@ -13,12 +13,12 @@
               :class="{'nav-container__single-link--active' : isBurgerClicked }" @click="handleBurgerClick">
             <font-awesome-icon :icon="['fas', 'xmark']" size="xl"/>
           </li>
-          <li v-if="windowWidth<=900" class="nav-container__single-link">Home</li>
-          <li class="nav-container__single-link">About</li>
+          <li v-if="windowWidth<=900" class="nav-container__single-link" @click="handleHome">Home</li>
+          <li class="nav-container__single-link" @click="handleAbout">About</li>
           <a class="nav-container__github-link" href="https://github.com/Zyrekk" rel="noreferrer" target="_blank">
             <li class="nav-container__single-link">GitHub</li>
           </a>
-          <li class="nav-container__single-link">Contact</li>
+          <li class="nav-container__single-link" @click="handleContact">Contact</li>
         </ul>
       </nav>
     </div>
@@ -30,6 +30,7 @@ import {ref, onMounted, onUnmounted} from 'vue';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
+import {useRouter} from "vue-router";
 
 library.add(faXmark)
 
@@ -39,6 +40,26 @@ export default {
   setup() {
     const windowWidth = ref(window.innerWidth);
     const isBurgerClicked = ref(false);
+    const router=useRouter()
+
+    const handleHome=()=>{
+      if(isBurgerClicked.value){
+        isBurgerClicked.value=false
+      }
+      router.push('/')
+    }
+    const handleAbout=()=>{
+      if(isBurgerClicked.value){
+        isBurgerClicked.value=false
+      }
+      router.push('/about')
+    }
+    const handleContact=()=>{
+      if(isBurgerClicked.value){
+        isBurgerClicked.value=false
+      }
+      router.push('/contact')
+    }
 
     const handleResize = () => {
       windowWidth.value = window.innerWidth;
@@ -56,7 +77,7 @@ export default {
       window.removeEventListener('resize', handleResize);
     });
 
-    return {windowWidth, isBurgerClicked, handleBurgerClick, handleResize};
+    return {windowWidth, isBurgerClicked, handleBurgerClick, handleResize,handleHome,handleAbout,handleContact};
   }
 }
 
@@ -96,6 +117,7 @@ export default {
   font-weight: 600;
   font-size: 1.875rem;
   line-height: 2.25rem;
+  margin-top: 0;
   transition: 0.2s ease-in-out;
   height: fit-content;
   cursor: pointer;
