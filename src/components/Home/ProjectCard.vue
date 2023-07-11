@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-    <a class="card__github-link" :href="project.link" rel="noreferrer">
+    <a class="card__github-link" :href="project.link" rel="noreferrer" target="_blank">
       GitHub
     </a>
   </div>
@@ -47,6 +47,14 @@ export default {
   box-shadow: 0px 0px 24px 0px rgba(14, 23, 49, 0.62);
   background: -webkit-linear-gradient(45deg, rgba(11, 21, 49, 0.62), rgba(39, 48, 87, 0.62));
   backdrop-filter: blur(20px);
+  transition: .3s ease;
+  &:hover{
+    transform: scale(0.98);
+    -webkit-box-shadow: 0px 0px 24px 0px rgba(186, 192, 208, 0.4);
+    -moz-box-shadow: 0px 0px 24px 0px rgba(186, 192, 208, 0.4);
+    box-shadow: 0px 0px 24px 0px rgba(186, 192, 208, 0.4);
+    //transform: scale(0.95);
+  }
 }
 
 .card__title{

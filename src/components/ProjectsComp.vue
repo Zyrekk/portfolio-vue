@@ -133,10 +133,10 @@ export default {
   },
   data() {
     return {
-      portfolio: require('./../assets/portfolio.png'),
+      portfolio: require('../assets/portfolio.png'),
       spotify: require('./../assets/spotify.png'),
-      spotifyLogin: require('./../assets/mySpotify.png'),
-      weather: require('./../assets/weather.png')
+      spotifyLogin: require('../assets/mySpotify.png'),
+      weather: require('../assets/weather.png')
     }
   },
 }
