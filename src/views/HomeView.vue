@@ -21,6 +21,12 @@ export default {
     MyValuesComponent,
     ProjectsContainer,
     QuickAbout
+  },
+  setup() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 }
 </script>
