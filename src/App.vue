@@ -1,15 +1,30 @@
 <template>
   <NavigationComponent/>
-  <router-view/>
+  <router-view v-slot="{ Component }">
+    <transition name="route" mode="out-in">
+      <component :is="Component"></component>
+    </transition>
+  </router-view>
   <FooterContainer/>
 </template>
 
 <script>
 import NavigationComponent from "@/components/Nav/NavigationComponent.vue";
 import FooterContainer from "@/components/Footer/FooterContainer.vue";
+import {useRouter} from "vue-router";
+import {ref, watch} from "vue";
 export default {
   name:"App",
-  components:{FooterContainer, NavigationComponent}
+  components:{FooterContainer, NavigationComponent},
+  setup() {
+    const router = useRouter();
+    const route = ref(router.currentRoute.value.path);
+    watch(() => router.currentRoute.value.path, (newPath) => {
+      route.value=newPath
+    });
+
+    return { route };
+  },
 
 }
 </script>
@@ -38,5 +53,24 @@ body{
   position: relative;
   overflow: hidden;
   min-height: 100vh;
+}
+
+/* route transitions */
+.route-enter-from {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.route-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
 }
 </style>
