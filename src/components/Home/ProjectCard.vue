@@ -49,11 +49,7 @@ export default {
   backdrop-filter: blur(20px);
   transition: .3s ease;
   &:hover{
-    transform: scale(0.98);
-    -webkit-box-shadow: 0px 0px 24px 0px rgba(186, 192, 208, 0.4);
-    -moz-box-shadow: 0px 0px 24px 0px rgba(186, 192, 208, 0.4);
-    box-shadow: 0px 0px 24px 0px rgba(186, 192, 208, 0.4);
-    //transform: scale(0.95);
+    transform: scale(0.98) translateY(-5px);
   }
 }
 
