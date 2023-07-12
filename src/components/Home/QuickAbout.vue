@@ -4,14 +4,23 @@
     <div class="quick-about__event-wrapper">
       <h3 class="quick-about__text">More about me</h3>
       <span class="quick-about__text--secondary">Click the button below to read more.</span>
-      <button class="quick-about__button">About me</button>
+      <button class="quick-about__button" @click="handleAbout">About me</button>
     </div>
   </section>
 </template>
 
 <script>
+import {useRouter} from "vue-router";
+
 export default {
-  name: "QuickAbout"
+  name: "QuickAbout",
+  setup(){
+    const router = useRouter()
+    const handleAbout = () => {
+      router.push('/about')
+    }
+    return{handleAbout}
+  }
 }
 </script>
 
@@ -67,6 +76,7 @@ export default {
   transition: .2s ease;
   &:hover{
     background: #525aab;
+    transform: translateY(-5px);
   }
 }
 

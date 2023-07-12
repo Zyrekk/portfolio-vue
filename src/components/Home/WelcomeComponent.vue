@@ -11,44 +11,47 @@
       <button class="welcome__contact-button">
         <div class="welcome__button-background"/>
         <div class="welcome__wave welcome__wave--1"/>
-        <span class="welcome__contact-text">Contact me</span>
+        <span class="welcome__contact-text" @click="handleContact">Contact me</span>
       </button>
 
     </div>
     <div class="welcome__carousel">
-      <transition-group tag="div" class="welcome__box-shadow" name="fade">
-          <img v-for="i in [image%4]" :key='i' class="welcome_image" :src="images[i]" />
+      <transition-group tag="a" :href="links[image%5]" target="_blank" rel="noreferrer" class="welcome__box-shadow" name="fade">
+        <img v-for="i in [image%5]" :key='i' class="welcome_image" :src="images[i]"/>
       </transition-group>
-      <transition-group tag="div" class="welcome__box-shadow-second" name="fade">
-        <img v-for="i in [(image+1)%4]" :key='i' class="welcome_image" :src="images[i]" />
+      <transition-group tag="a" :href="links[(image+1)%5]" target="_blank" rel="noreferrer" class="welcome__box-shadow-second" name="fade">
+        <img v-for="i in [(image+1)%5]" :key='i' class="welcome_image" :src="images[i]"/>
       </transition-group>
     </div>
   </section>
 </template>
 <script>
-// import {library} from '@fortawesome/fontawesome-svg-core'
-// import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
-// import {faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import {onMounted, ref} from "vue";
+import {useRouter} from "vue-router";
 
-// library.add(faArrowRight)
 export default {
   name: "WelcomeComponent",
-  // components: {FontAwesomeIcon},
   setup() {
+    const router = useRouter()
     const image = ref(0)
-    const images = [require('@/assets/portfolio.png'),require('@/assets/weather.png'), require('@/assets/mySpotify.png'), require('@/assets/parleto.png')]
+    const images = [require('@/assets/parleto.png'), require('@/assets/thesis.png'), require('@/assets/justresearch.png'), require('@/assets/weather.png'), require('@/assets/mySpotify.png')]
+    const links = ['https://github.com/Zyrekk/web-dev-parleto-app', 'https://github.com/Zyrekk/explore-the-world',
+      'https://github.com/UMK-PZ2022-Zesp01/UMK-PZ2022-Researcher-frontend', 'https://github.com/Zyrekk/weather-app-vue', 'https://github.com/Zyrekk/spotify-login-app']
+
+    const handleContact = () => {
+      router.push('/contact')
+    }
 
     const switchImage = () => {
-      if(image.value===4){
-        image.value=0
+      if (image.value === 4) {
+        image.value = 0
       }
-      image.value=image.value+1
+      image.value = image.value + 1
     }
     onMounted(() => {
-      setInterval(switchImage, 7000);
+      setInterval(switchImage, 7000)
     });
-    return {image, images}
+    return {image, images,links, handleContact}
   }
 }
 </script>
@@ -61,7 +64,7 @@ export default {
   box-sizing: border-box;
   justify-content: space-between;
   margin: auto;
-  max-width: min(1440px,90vw);
+  max-width: min(1440px, 90vw);
   width: 100%;
 }
 
@@ -109,18 +112,20 @@ export default {
 }
 
 .welcome__box-shadow {
+  cursor: pointer;
   animation: scale 2s;
   overflow: hidden;
-  -webkit-box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
-  -moz-box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
-  box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
+  -webkit-box-shadow: 0px 0px 14px 5px rgba(75, 82, 140, 1);
+  -moz-box-shadow: 0px 0px 14px 5px rgba(75, 82, 140, 1);
+  box-shadow: 0px 0px 14px 5px rgba(75, 82, 140, 1);
   width: 100%;
   border-radius: 20px;
   display: flex;
   z-index: 15;
   aspect-ratio: 1/1;
   position: relative;
-  &:after{
+
+  &:after {
     position: absolute;
     content: '';
     width: 100%;
@@ -143,11 +148,12 @@ export default {
 }
 
 .welcome__box-shadow-second {
+  cursor: pointer;
   animation: scale 2s;
   position: absolute;
-  -webkit-box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
-  -moz-box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
-  box-shadow: 0px 0px 14px 5px rgba(75,82,140,1);
+  -webkit-box-shadow: 0px 0px 14px 5px rgba(75, 82, 140, 1);
+  -moz-box-shadow: 0px 0px 14px 5px rgba(75, 82, 140, 1);
+  box-shadow: 0px 0px 14px 5px rgba(75, 82, 140, 1);
   width: 100%;
   border-radius: 20px;
   display: flex;
@@ -157,7 +163,8 @@ export default {
   right: 0;
   transition: .2s ease-in-out;
   transform: translate(50%, 50%);
-  &:after{
+
+  &:after {
     position: absolute;
     border-radius: 20px;
     content: '';
@@ -189,7 +196,7 @@ export default {
     background-size: revert;
     transform-origin: center;
     backface-visibility: hidden;
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-5px);
 
     .welcome__contact-text {
       transform-origin: center;
@@ -199,7 +206,7 @@ export default {
   }
 }
 
-.welcome__button-background{
+.welcome__button-background {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -252,10 +259,10 @@ export default {
 }
 
 @keyframes scale {
-  0%{
+  0% {
     scale: 1.2;
   }
-  100%{
+  100% {
     scale: 1;
   }
 }
@@ -285,20 +292,20 @@ export default {
 }
 
 @media screen and (max-width: 1530px) {
-  .welcome__carousel{
+  .welcome__carousel {
     margin-left: 0;
   }
 }
 
 @media screen and (max-width: 1340px) {
-  .welcome{
+  .welcome {
     flex-direction: column;
   }
-  .welcome__carousel{
+  .welcome__carousel {
     padding-top: 5rem;
     margin: 0 15%;
   }
-  .welcome__box-shadow,.welcome__box-shadow-second {
+  .welcome__box-shadow, .welcome__box-shadow-second {
     width: 130%;
   }
   .welcome__box-shadow-second {
@@ -317,7 +324,7 @@ export default {
 }
 
 @media screen and (max-width: 1000px) {
-  .welcome__box-shadow,.welcome__box-shadow-second {
+  .welcome__box-shadow, .welcome__box-shadow-second {
     width: 100%;
   }
   .welcome__box-shadow-second {
@@ -325,18 +332,19 @@ export default {
   }
 
 }
+
 @media screen and (max-width: 950px) {
-  .welcome__left-wrapper{
+  .welcome__left-wrapper {
     flex-direction: column;
     justify-content: unset;
     align-items: unset;
     gap: 0;
   }
-  .welcome__position-text{
+  .welcome__position-text {
     text-align: left;
     margin-bottom: 0;
   }
-  .welcome__welcome-text{
+  .welcome__welcome-text {
     padding-top: 2rem;
     font-size: 1.05rem;
   }
@@ -380,7 +388,7 @@ export default {
     width: 55%;
   }
 
-  .welcome__box-shadow,.welcome__box-shadow-second {
+  .welcome__box-shadow, .welcome__box-shadow-second {
     width: 100%;
   }
   .welcome__box-shadow-second {
@@ -402,17 +410,17 @@ export default {
     margin-top: 2rem;
   }
 
-  .nav-container{
+  .nav-container {
     max-width: 90vw;
   }
 }
 
 @media screen and (max-width: 335px) {
-  .welcome__position-text-secondary,.welcome__position-text{
+  .welcome__position-text-secondary, .welcome__position-text {
     font-size: 3rem;
   }
 
-  .welcome__welcome-text{
+  .welcome__welcome-text {
     font-size: 0.9rem;
   }
 
@@ -420,7 +428,7 @@ export default {
     padding: 13px;
   }
 
-  .welcome__contact-text{
+  .welcome__contact-text {
     font-size: 0.9rem;
   }
 }

@@ -29,13 +29,13 @@
           About me
         </div>
         <p class="about__about-name">Hello, my name is Konrad.</p>
-        <p class="about__about-desc">I am a fourth-year computer science student</p>
+        <p class="about__about-desc">I am a fourth-year computer science student.</p>
         <p class="about__about-desc">I have spent a great deal of time coding over the past few years. Through
           consistent daily coding practice, I
           have constantly improved my skills and expanded my knowledge of different programming languages and
           frameworks.
         </p>
-        <p class="about__about-desc">I also have two years' experience with the backend, i.e. java kotlin spring etc, so
+        <p class="about__about-desc">I also have two years experience with the backend, i.e. java kotlin spring etc, so
           you could say
           I am also a bit of a fullstack developer.
         </p>
@@ -89,6 +89,7 @@ export default {
   flex-direction: column;
   max-width: min(1440px, 90vw);
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 .about__info {

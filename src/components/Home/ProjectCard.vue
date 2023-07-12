@@ -97,6 +97,7 @@ export default {
   transition: .2s ease;
   &:hover{
     background: #525aab;
+    transform: translateY(-5px);
   }
 }
 

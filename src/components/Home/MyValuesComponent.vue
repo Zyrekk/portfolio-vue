@@ -22,10 +22,6 @@
           <span class="values__text-description">Pixel-perfect creation</span>
         </div>
       </div>
-      <div class="values__wave values__wave--1"/>
-      <div class="values__wave-2 values__wave--2"/>
-      <div class="values__blur-bottom"/>
-      <div class="values__blur-top"/>
     </div>
   </section>
 
@@ -47,6 +43,30 @@ export default {
   background: -webkit-linear-gradient(90deg, #030712, #1b213e);
   width: 100%;
   margin: 18rem auto 0;
+  overflow: hidden;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    min-width: 300vw;
+    min-height: 300vw;
+    background: #030712;
+    animation: rotate infinite linear;
+  }
+
+  &:before {
+    bottom: 7vh;
+    border-radius: 45%;
+    animation-duration: 10s;
+  }
+
+  &:after {
+    bottom: 5vh;
+    opacity: .5;
+    border-radius: 47%;
+    animation-duration: 10s;
+  }
 }
 
 .values__wrapper{
@@ -134,6 +154,12 @@ export default {
 
 .values__wave--2 {
   animation: animate2 30s linear infinite;
+}
+
+@keyframes rotate {
+  0% {transform: translate(-50%, 0) rotate(0deg);}
+  50% {transform: translate(-50%, 2%) rotate(180deg);}
+  100% {transform: translate(-50%, 0) rotate(360deg);}
 }
 
 @keyframes animate {
