@@ -43,12 +43,12 @@ export default {
   background: -webkit-linear-gradient(90deg, #030712, #1b213e);
   width: 100%;
   margin: 18rem auto 0;
-  overflow: hidden;
+  //overflow: hidden;
   &:before,
   &:after {
     content: "";
     position: absolute;
-    left: 50%;
+    left: 40%;
     min-width: 300vw;
     min-height: 300vw;
     background: #030712;

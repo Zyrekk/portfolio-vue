@@ -46,7 +46,7 @@ export default {
   &:after {
     content: "";
     position: absolute;
-    left: 50%;
+    left: 40%;
     min-width: 300vw;
     min-height: 300vw;
     background: #030712;
