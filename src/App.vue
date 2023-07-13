@@ -39,6 +39,7 @@ export default {
 body{
   margin: 0;
   padding: 0;
+  background: #030712;
 }
 #app {
   display: flex;
