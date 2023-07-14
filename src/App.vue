@@ -41,6 +41,26 @@ body{
   padding: 0;
   background: #030712;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #02050c;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  transition: .2s ease-in-out;
+  background: #525aab;
+  border-radius: 15px;
+  &:hover{
+    background: #818cf8;
+  }
+}
 #app {
   display: flex;
   flex-direction: column;
