@@ -40,7 +40,7 @@ export default {
   display: flex;
   justify-content: center;
   position: relative;
-  background: -webkit-linear-gradient(90deg, #030712, #1b213e);
+  background: #181d44;
   width: 100%;
   margin: 18rem auto 0;
   overflow: hidden;
@@ -48,10 +48,11 @@ export default {
   &:after {
     content: "";
     position: absolute;
-    left: 40%;
-    min-width: 300vw;
-    min-height: 300vw;
+    left: 50%;
+    min-width: 250vw;
+    min-height: 250vw;
     background: #030712;
+    //background: red;
     animation: rotate infinite linear;
   }
 
@@ -133,21 +134,6 @@ export default {
   background: -webkit-linear-gradient(90deg, #1b213e,#030712);
 }
 
-.values__wave,.values__wave-2 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background-image: url("@/assets/Wave2.svg");
-  opacity: 0.1;
-}
-
-.values__wave-2 {
-  animation: scale 2s;
-  height: 30%;
-}
-
 .values__wave--1 {
   animation: animate 35s linear infinite;
 }
@@ -157,27 +143,11 @@ export default {
 }
 
 @keyframes rotate {
-  0% {transform: translate(-50%, 0) rotate(0deg);}
-  50% {transform: translate(-50%, 2%) rotate(180deg);}
-  100% {transform: translate(-50%, 0) rotate(360deg);}
+  0% {transform: translate(-50%, 2%) rotate(0deg);}
+  50% {transform: translate(-50%, 4%) rotate(180deg);}
+  100% {transform: translate(-50%, 2%) rotate(360deg);}
 }
 
-@keyframes animate {
-  0% {
-    background-position-x: 0px;
-  }
-  100% {
-    background-position-x: 1440px;
-  }
-}
-@keyframes animate2 {
-  0% {
-    background-position-x: 1440px;
-  }
-  100% {
-    background-position-x: 0px;
-  }
-}
 
 @keyframes scale {
   0% {

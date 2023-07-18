@@ -46,9 +46,9 @@ export default {
   &:after {
     content: "";
     position: absolute;
-    left: 40%;
-    min-width: 300vw;
-    min-height: 300vw;
+    left: 50%;
+    min-width: 200vw;
+    min-height: 200vw;
     background: #030712;
     animation: rotate infinite linear;
   }
@@ -67,9 +67,9 @@ export default {
   }
 }
 @keyframes rotate {
-  0% {transform: translate(-50%, 0) rotateZ(0deg);}
-  50% {transform: translate(-50%, 2%) rotateZ(180deg);}
-  100% {transform: translate(-50%, 0) rotateZ(360deg);}
+  0% {transform: translate(-50%, 2%) rotateZ(0deg);}
+  50% {transform: translate(-50%, 4%) rotateZ(180deg);}
+  100% {transform: translate(-50%, 2%) rotateZ(360deg);}
 }
 
 .footer__dev {
